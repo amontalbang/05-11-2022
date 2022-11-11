@@ -1,4 +1,4 @@
-package com.example.a05_11_2022;
+/*package com.example.a05_11_2022;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -42,5 +42,10 @@ public class RegistroPuntuaciones extends AppCompatActivity {
         values.put(campoTiempo.getTime().toString());
 
         Long idResultante = db.insert(Utilidades.TABLA_PUNTUACIONES, Utilidades.CAMPO_ID, values);
+<<<<<<< HEAD
     }*/
 }
+=======
+    }
+}*/
+>>>>>>> master

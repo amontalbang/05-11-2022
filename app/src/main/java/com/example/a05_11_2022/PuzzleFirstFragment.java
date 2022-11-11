@@ -12,8 +12,10 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -55,6 +57,8 @@ public class PuzzleFirstFragment extends Fragment {
             Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Puzzle");
+
         vista = view;
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 

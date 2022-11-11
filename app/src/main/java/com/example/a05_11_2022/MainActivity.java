@@ -1,27 +1,19 @@
 package com.example.a05_11_2022;
 
+
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.a05_11_2022.databinding.ActivityMainBinding;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+    }
 
-
+    private void setSupportActionBar(Toolbar toolbar) {
     }
 
     @Override

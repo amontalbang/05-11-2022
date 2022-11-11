@@ -2,6 +2,7 @@ package com.example.a05_11_2022;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -18,6 +19,7 @@ public class trans2 extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_trans2, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Nivel 2 completado");
 
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {

@@ -3,6 +3,7 @@ package com.example.a05_11_2022;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -19,6 +20,7 @@ public class SalirFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_salir, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Salir");
 
         Button button2 = (Button) view.findViewById(R.id.button4);
         button2.setOnClickListener(new View.OnClickListener() {
