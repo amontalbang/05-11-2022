@@ -3,6 +3,7 @@ package com.example.a05_11_2022;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -21,6 +22,7 @@ public class trans1 extends Fragment {
     ) {
 
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Nivel 1 completado");
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override

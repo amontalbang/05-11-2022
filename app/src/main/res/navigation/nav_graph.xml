@@ -18,11 +18,11 @@
             android:id="@+id/action_FirstFragment_to_puzzleFirstFragment"
             app:destination="@id/puzzleFirstFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_puntuacionesFragment"
-            app:destination="@id/puntuacionesFragment" />
-        <action
             android:id="@+id/action_FirstFragment_to_salirFragment"
             app:destination="@id/salirFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_puntuaciones"
+            app:destination="@id/puntuaciones" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
@@ -85,21 +85,21 @@
             app:destination="@id/puzzleFirstFragment" />
     </fragment>
     <fragment
-        android:id="@+id/puntuacionesFragment"
-        android:name="com.example.a05_11_2022.PuntuacionesFragment"
-        android:label="fragment_puntuaciones"
-        tools:layout="@layout/fragment_puntuaciones" >
-        <action
-            android:id="@+id/action_puntuacionesFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/salirFragment"
         android:name="com.example.a05_11_2022.SalirFragment"
         android:label="fragment_salir"
         tools:layout="@layout/fragment_salir" >
         <action
             android:id="@+id/action_salirFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/puntuaciones"
+        android:name="com.example.a05_11_2022.Puntuaciones"
+        android:label="fragment_puntuaciones"
+        tools:layout="@layout/fragment_puntuaciones" >
+        <action
+            android:id="@+id/action_puntuaciones_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
