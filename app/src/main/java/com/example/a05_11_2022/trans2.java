@@ -19,7 +19,6 @@ public class trans2 extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_trans2, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Nivel 2 completado");
 
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +33,7 @@ public class trans2 extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_trans2_to_salirFragment);
+                Navigation.findNavController(view).navigate(R.id.action_trans2_to_puzzleFirstFragment);
             }
 
         });

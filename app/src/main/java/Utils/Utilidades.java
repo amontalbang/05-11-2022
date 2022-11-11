@@ -4,7 +4,7 @@ public class Utilidades {
 
     //Constantes tabla puntuaciones
     public static final String TABLA_PUNTUACIONES = "Puntuaciones";
-    public static int CAMPO_ID = 0;
+    public static final String CAMPO_ID = "Id";
     public static final String CAMPO_NOMBRE = "Nombre";
     public static final String CAMPO_TIEMPO = "Tiempo";
 

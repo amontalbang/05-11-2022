@@ -1,16 +1,13 @@
 package com.example.a05_11_2022;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
 import com.example.a05_11_2022.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
@@ -39,6 +36,15 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_puntuaciones);
+            }
+
+        });
+
+        Button button_exit = (Button) view.findViewById(R.id.button_exit);
+        button_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.exit(0);
             }
 
         });

@@ -18,7 +18,7 @@ public class WebViewFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_web_view, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ayuda");
+
         WebView webView = view.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());

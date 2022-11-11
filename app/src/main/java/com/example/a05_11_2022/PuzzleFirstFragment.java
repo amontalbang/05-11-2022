@@ -17,6 +17,8 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import java.sql.Time;
@@ -44,12 +46,15 @@ public class PuzzleFirstFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (aumento == false){
+            timer = new Tiempo();
             COLUMNAS = 3;
             DIMENSION = COLUMNAS * COLUMNAS;
         } else {
             COLUMNAS++;
             DIMENSION = COLUMNAS * COLUMNAS;
         }
+
+
     }
 
     @Override
@@ -57,7 +62,6 @@ public class PuzzleFirstFragment extends Fragment {
             Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Puzzle");
 
         vista = view;
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
@@ -142,11 +146,15 @@ public class PuzzleFirstFragment extends Fragment {
     }
 
     private void inicio() {
-        timer.Contar();
         mGestos.setNumColumns(COLUMNAS);
         titulo = new String[DIMENSION];
         for (int i = 0; i < DIMENSION; i++) {
             titulo[i]  = String.valueOf(i);
+        }
+        if (aumento == false){
+            timer.Contar();
+        } else{
+            timer.Continuar();
         }
     }
 
@@ -347,6 +355,7 @@ public class PuzzleFirstFragment extends Fragment {
                 Navigation.findNavController(vista).navigate(R.id.action_puzzleFirstFragment_to_trans2);
                 break;
             case 5:
+
                 Navigation.findNavController(vista).navigate(R.id.action_puzzleFirstFragment_to_trans3);
                 break;
         }

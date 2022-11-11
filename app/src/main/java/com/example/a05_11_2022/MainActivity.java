@@ -1,13 +1,14 @@
 package com.example.a05_11_2022;
 
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toolbar;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -35,14 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setSupportActionBar(Toolbar toolbar) {
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -63,11 +61,6 @@ public class MainActivity extends AppCompatActivity {
             Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.webViewFragment);
         }
 
-        if (id == R.id.Salir) {
-            this.finish();
-            System.exit(0);
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -77,6 +70,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
 }

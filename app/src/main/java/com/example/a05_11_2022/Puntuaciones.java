@@ -18,7 +18,6 @@ public class Puntuaciones extends Fragment {
     ) {
 
         View view = inflater.inflate(R.layout.fragment_puntuaciones, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Puntuaciones");
 
         Button button = (Button) view.findViewById(R.id.button_volver);
         button.setOnClickListener(new View.OnClickListener() {

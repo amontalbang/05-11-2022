@@ -12,7 +12,6 @@ public class Tiempo {
     class Contador extends TimerTask {
         public void run() {
             segundos++;
-            System.out.println("segundo: " + segundos);
         }
     }
     //Crea un timer, inicia segundos a 0 y comienza a contar
@@ -26,6 +25,12 @@ public class Tiempo {
     public void Detener() {
         timer.cancel();
     }
+
+    public void Continuar(){
+        timer = new Timer();
+        timer.schedule(new Contador(), 0, 1000);
+    }
+
     //Metodo que retorna los segundos transcurridos
     public int getSegundos()
     {

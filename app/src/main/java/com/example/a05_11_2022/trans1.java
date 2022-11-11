@@ -22,7 +22,7 @@ public class trans1 extends Fragment {
     ) {
 
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Nivel 1 completado");
+
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,43 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.sql.Time;
 import Utils.Utilidades;
 
-public class RegistroPuntuaciones extends AppCompatActivity {
+public class RegistroPuntuaciones {
 
-    /* int id = 0;
-    String campoId;
-    EditText campoNombre;
-    Time campoTiempo;
+    private static int id = 0;
+    /*String campoId;
+    String campoNombre;
+    String campoTiempo;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.fragment_trans3);
-
-        id = id++;
-        campoId = Integer.toString(id);
-        campoNombre = (EditText) findViewById(R.id.campoNombre);
-        campoTiempo = ;
+    public RegistroPuntuaciones() {
     }
 
-    public void onClick(){
-        registrarPuntuaciones();
-    }
+    private void registrarPuntuaciones(String nombre, String puntuacion) {
 
-    private void registrarPuntuaciones() {
-
-        ConexionSQLite conn = new ConexionSQLite((View.OnClickListener) this, "bd_puntuaciones", null, 1);
+        ConexionSQLiteHelper conn = new ConexionSQLite(this, "bd_puntuaciones", null, 1);
         SQLiteDatabase db = conn.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(campoId);
-        values.put(Utilidades.CAMPO_NOMBRE, campoNombre.getText().toString());
-        values.put(campoTiempo.getTime().toString());
+        values.put(Utilidades.CAMPO_ID, id);
+        values.put(Utilidades.CAMPO_NOMBRE, nombre);
+        values.put(Utilidades.CAMPO_TIEMPO, puntuacion);
 
         Long idResultante = db.insert(Utilidades.TABLA_PUNTUACIONES, Utilidades.CAMPO_ID, values);
-<<<<<<< HEAD
-    }*/
-}
-=======
     }
 }*/
->>>>>>> master
+

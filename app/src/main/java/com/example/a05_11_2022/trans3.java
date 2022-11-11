@@ -19,7 +19,6 @@ public class trans3 extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_trans3, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Juego completado");
 
         Button button3 = (Button) view.findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
@@ -27,9 +26,6 @@ public class trans3 extends Fragment {
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_trans3_to_FirstFragment);
             }
-
-            ConexionSQLite conn = new ConexionSQLite(this, "Puntuaciones", null, 1);
-
         });
         return view;
     }

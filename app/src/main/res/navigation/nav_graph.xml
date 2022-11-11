@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.a05_11_2022.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="PuzzleDoid"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -18,16 +18,13 @@
             android:id="@+id/action_FirstFragment_to_puzzleFirstFragment"
             app:destination="@id/puzzleFirstFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_salirFragment"
-            app:destination="@id/salirFragment" />
-        <action
             android:id="@+id/action_FirstFragment_to_puntuaciones"
             app:destination="@id/puntuaciones" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.a05_11_2022.WebViewFragment"
-        android:label="fragment_web_view"
+        android:label="Ayuda"
         tools:layout="@layout/fragment_web_view" >
         <action
             android:id="@+id/action_webViewFragment_to_FirstFragment"
@@ -36,11 +33,8 @@
     <fragment
         android:id="@+id/trans1"
         android:name="com.example.a05_11_2022.trans1"
-        android:label="fragment_trans1"
+        android:label="Nivel 1 completado"
         tools:layout="@layout/fragment_trans1" >
-        <action
-            android:id="@+id/action_trans1_to_salirFragment"
-            app:destination="@id/salirFragment" />
         <action
             android:id="@+id/action_trans1_to_puzzleFirstFragment"
             app:destination="@id/puzzleFirstFragment" />
@@ -48,7 +42,7 @@
     <fragment
         android:id="@+id/puzzleFirstFragment"
         android:name="com.example.a05_11_2022.PuzzleFirstFragment"
-        android:label="fragment_puzzle_first"
+        android:label="Completa el puzzle"
         tools:layout="@layout/fragment_puzzle_first" >
         <action
             android:id="@+id/action_puzzleFirstFragment_to_trans1"
@@ -63,11 +57,8 @@
     <fragment
         android:id="@+id/trans2"
         android:name="com.example.a05_11_2022.trans2"
-        android:label="fragment_trans2"
+        android:label="Nivel 2 completado"
         tools:layout="@layout/fragment_trans2" >
-        <action
-            android:id="@+id/action_trans2_to_salirFragment"
-            app:destination="@id/salirFragment" />
         <action
             android:id="@+id/action_trans2_to_puzzleFirstFragment"
             app:destination="@id/puzzleFirstFragment" />
@@ -75,7 +66,7 @@
     <fragment
         android:id="@+id/trans3"
         android:name="com.example.a05_11_2022.trans3"
-        android:label="fragment_trans3"
+        android:label="Juego completado"
         tools:layout="@layout/fragment_trans3" >
         <action
             android:id="@+id/action_trans3_to_FirstFragment"
@@ -85,18 +76,9 @@
             app:destination="@id/puzzleFirstFragment" />
     </fragment>
     <fragment
-        android:id="@+id/salirFragment"
-        android:name="com.example.a05_11_2022.SalirFragment"
-        android:label="fragment_salir"
-        tools:layout="@layout/fragment_salir" >
-        <action
-            android:id="@+id/action_salirFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/puntuaciones"
         android:name="com.example.a05_11_2022.Puntuaciones"
-        android:label="fragment_puntuaciones"
+        android:label="Puntuaciones"
         tools:layout="@layout/fragment_puntuaciones" >
         <action
             android:id="@+id/action_puntuaciones_to_FirstFragment"
