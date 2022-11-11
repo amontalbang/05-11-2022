@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">PuzzleDroid</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">PuzzleDroid</string>
+    <string name="hello_second_fragment">Ayuda</string>
+    <string name="tool_Ayuda">Ayuda</string>
+    <string name="tool_salir">Salir</string>
+    <string name="tool_salir3">Finalizar</string>
+    <string name="continuar1">Continuar</string>
+    <string name="continuar2">Continuar</string>
+    <string name="continuar3">Continuar</string>
+    <string name="foto_leon">leon</string>
+    <string name="foto_perro">perro</string>
+    <string name="foto_paleta">paleta</string>
+    <string name="si">SI</string>
+    <string name="no">NO</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_main">logo_main</string>
+    <string name="logo_team">logo_team</string>
+    <string name="button_scores">Puntuaciones</string>
+    <string name="button_play">Jugar</string>
+    <string name="nivel1Compl">nivel1Compl</string>
+    <string name="nivel2Compl">nivel2Compl</string>
+    <string name="nivel3Compl">nivel3Compl</string>
+    <string name="foto_salir">foto_salir</string>
+    <string name="foto_seguro">foto_seguro</string>
+    <string name="foto_team">foto_team</string>
+    <string name="tu_tiempo">Guarda tu puntuación escribiendo aquí tu nombre</string>
+    <string name="escribe_tu_nombre_aqu">nombre</string>
+    <string name="tiempo">Tiempo</string>
+    <string name="campo_punt">Tu tiempo 00:00:00</string>
+    <string name="puntuaciones">puntuaciones</string>
+
+</resources>
