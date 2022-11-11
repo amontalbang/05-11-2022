@@ -11,7 +11,7 @@ import Utils.Utilidades;
 
 public class RegistroPuntuaciones extends AppCompatActivity {
 
-    int id = 0;
+    /* int id = 0;
     String campoId;
     EditText campoNombre;
     Time campoTiempo;
@@ -42,5 +42,5 @@ public class RegistroPuntuaciones extends AppCompatActivity {
         values.put(campoTiempo.getTime().toString());
 
         Long idResultante = db.insert(Utilidades.TABLA_PUNTUACIONES, Utilidades.CAMPO_ID, values);
-    }
+    }*/
 }

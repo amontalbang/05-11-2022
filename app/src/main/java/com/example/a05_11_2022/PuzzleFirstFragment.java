@@ -36,6 +36,7 @@ public class PuzzleFirstFragment extends Fragment {
     public static final String LEFT = "left";
     public static final String RIGHT = "right";
     public Context context;
+    private static Tiempo timer;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -137,7 +138,7 @@ public class PuzzleFirstFragment extends Fragment {
     }
 
     private void inicio() {
-
+        timer.Contar();
         mGestos.setNumColumns(COLUMNAS);
         titulo = new String[DIMENSION];
         for (int i = 0; i < DIMENSION; i++) {
@@ -325,7 +326,9 @@ public class PuzzleFirstFragment extends Fragment {
         }
 
         if (resuelto()) {
-            Toast.makeText(context, "¡¡ CONSEGUIDO !!", Toast.LENGTH_SHORT).show();
+            timer.Detener();
+            String tiempo = Integer.toString(timer.getSegundos());
+            Log.d("Tiempo empleado", tiempo);
             goToPantalla();
         }
     }
