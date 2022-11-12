@@ -1,15 +1,12 @@
 package com.example.a05_11_2022;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 public class trans2 extends Fragment {
 
@@ -33,11 +30,10 @@ public class trans2 extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_trans2_to_puzzleFirstFragment);
+                Navigation.findNavController(view).navigate(R.id.action_trans1_to_FirstFragment);
             }
 
         });
         return view;
     }
-
 }

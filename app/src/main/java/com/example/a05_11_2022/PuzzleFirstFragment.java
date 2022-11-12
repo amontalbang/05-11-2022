@@ -3,28 +3,18 @@ package com.example.a05_11_2022;
 import android.content.Context;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
-
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 
 public class PuzzleFirstFragment extends Fragment {
 
@@ -45,6 +35,10 @@ public class PuzzleFirstFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        if(COLUMNAS == 5){
+            aumento = false;
+        }
+
         if (aumento == false){
             timer = new Tiempo();
             COLUMNAS = 3;
@@ -53,8 +47,6 @@ public class PuzzleFirstFragment extends Fragment {
             COLUMNAS++;
             DIMENSION = COLUMNAS * COLUMNAS;
         }
-
-
     }
 
     @Override
@@ -340,7 +332,6 @@ public class PuzzleFirstFragment extends Fragment {
         if (resuelto()) {
             timer.Detener();
             String tiempo = Integer.toString(timer.getSegundos());
-            Log.d("Tiempo empleado", tiempo);
             goToPantalla();
         }
     }
@@ -365,13 +356,11 @@ public class PuzzleFirstFragment extends Fragment {
     private static boolean resuelto() {
 
         boolean resuelto = false;
-        Log.d("movimiento", "movimiento");
 
         for (int i = 0; i < titulo.length; i++) {
             if (titulo[i].equals(String.valueOf(i))) {
                 resuelto = true;
             } else {
-                Log.d("resuelto", " no resuelto");
                 resuelto = false;
                 break;
             }

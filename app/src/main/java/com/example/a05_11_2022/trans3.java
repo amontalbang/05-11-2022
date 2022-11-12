@@ -1,15 +1,12 @@
 package com.example.a05_11_2022;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 public class trans3 extends Fragment {
 

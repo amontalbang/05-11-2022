@@ -2,20 +2,18 @@ package com.example.a05_11_2022;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.media.MediaTimestamp;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.GridView;
-import android.widget.Toast;
 
 public class DetectorGestos extends GridView{
+
     private GestureDetector gdetector;
-    private boolean mFlingConfirmed = false;
+    private boolean confirmarMovimiento = false;
     private float mTouchX;
     private float mTouchY;
-
     private static final int SWIPE_MIN_DISTANCE = 100;
     private static final int SWIPE_MAX_OFF_PATH = 100;
     private static final int SWIPE_THRESHOLD_VELOCITY = 100;
@@ -92,20 +90,20 @@ public class DetectorGestos extends GridView{
         gdetector.onTouchEvent(ev);
 
         if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-            mFlingConfirmed = false;
+            confirmarMovimiento = false;
         } else if (action == MotionEvent.ACTION_DOWN) {
             mTouchX = ev.getX();
             mTouchY = ev.getY();
         } else {
 
-            if (mFlingConfirmed) {
+            if (confirmarMovimiento) {
                 return true;
             }
 
             float dX = (Math.abs(ev.getX() - mTouchX));
             float dY = (Math.abs(ev.getY() - mTouchY));
             if ((dX > SWIPE_MIN_DISTANCE) || (dY > SWIPE_MIN_DISTANCE)) {
-                mFlingConfirmed = true;
+                confirmarMovimiento = true;
                 return true;
             }
         }
