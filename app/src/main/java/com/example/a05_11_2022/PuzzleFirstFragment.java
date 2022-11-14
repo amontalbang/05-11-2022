@@ -1,6 +1,9 @@
 package com.example.a05_11_2022;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import java.util.ArrayList;
@@ -31,6 +36,7 @@ public class PuzzleFirstFragment extends Fragment {
     public static final String RIGHT = "right";
     public Context context;
     private static Tiempo timer;
+    private static ArrayList<Bitmap> pieces;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -42,11 +48,10 @@ public class PuzzleFirstFragment extends Fragment {
         if (aumento == false){
             timer = new Tiempo();
             COLUMNAS = 3;
-            DIMENSION = COLUMNAS * COLUMNAS;
         } else {
             COLUMNAS++;
-            DIMENSION = COLUMNAS * COLUMNAS;
         }
+        DIMENSION = COLUMNAS * COLUMNAS;
     }
 
     @Override
@@ -56,8 +61,10 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
+        ImageView image = new ImageView(getContext());
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
+        setPieces(image);
         inicio();
         mezclar();
         setDimensiones();
@@ -95,7 +102,6 @@ public class PuzzleFirstFragment extends Fragment {
     };
 
     private void setDimensiones() {
-
         ViewTreeObserver vto = mGestos.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -110,7 +116,7 @@ public class PuzzleFirstFragment extends Fragment {
                 mColumnWidth = displayWidth / COLUMNAS;
                 mColumnHeight = requiredHeight / COLUMNAS;
 
-                switch (COLUMNAS){
+                /*switch (COLUMNAS){
                     case 3:
                         mostrar(getContext());
                         break;
@@ -120,7 +126,8 @@ public class PuzzleFirstFragment extends Fragment {
                     case 5:
                         mostrar2(getContext());
                         break;
-                }
+                }*/
+                buildPuzzle(getContext());
             }
         });
     }
@@ -151,7 +158,6 @@ public class PuzzleFirstFragment extends Fragment {
     }
 
     private void mezclar() {
-
         int index;
         String temp;
         Random aleatorio = new Random();
@@ -164,152 +170,19 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
-    private static void mostrar(Context context) {
-
+    private static void buildPuzzle(Context context) {
         ArrayList<Button> buttons = new ArrayList<>();
         Button button;
 
         for (int i = 0; i < titulo.length; i++) {
             button = new Button(context);
-
-            if (titulo[i].equals("0"))
-                button.setBackgroundResource(R.drawable.frame_1);
-            else if (titulo[i].equals("1"))
-                button.setBackgroundResource(R.drawable.frame_2);
-            else if (titulo[i].equals("2"))
-                button.setBackgroundResource(R.drawable.frame_3);
-            else if (titulo[i].equals("3"))
-                button.setBackgroundResource(R.drawable.frame_4);
-            else if (titulo[i].equals("4"))
-                button.setBackgroundResource(R.drawable.frame_5);
-            else if (titulo[i].equals("5"))
-                button.setBackgroundResource(R.drawable.frame_6);
-            else if (titulo[i].equals("6"))
-                button.setBackgroundResource(R.drawable.frame_7);
-            else if (titulo[i].equals("7"))
-                button.setBackgroundResource(R.drawable.frame_8);
-            else if (titulo[i].equals("8"))
-                button.setBackgroundResource(R.drawable.frame_9);
-
+            int index = Integer.parseInt(titulo[i]);
+            Drawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(), pieces.get(index));
+            button.setBackground(drawable);
             buttons.add(button);
         }
-
         mGestos.setAdapter(new Adaptador(buttons, mColumnWidth, mColumnHeight));
     }
-
-    private static void mostrar1(Context context) {
-
-        ArrayList<Button> buttons = new ArrayList<>();
-        Button button;
-
-        Log.d("mostrar1", "mostrar1");
-        for (int i = 0; i < titulo.length; i++) {
-            button = new Button(context);
-
-            if (titulo[i].equals("0"))
-                button.setBackgroundResource(R.drawable.frame2_1);
-            else if (titulo[i].equals("1"))
-                button.setBackgroundResource(R.drawable.frame2_2);
-            else if (titulo[i].equals("2"))
-                button.setBackgroundResource(R.drawable.frame2_3);
-            else if (titulo[i].equals("3"))
-                button.setBackgroundResource(R.drawable.frame2_4);
-            else if (titulo[i].equals("4"))
-                button.setBackgroundResource(R.drawable.frame2_5);
-            else if (titulo[i].equals("5"))
-                button.setBackgroundResource(R.drawable.frame2_6);
-            else if (titulo[i].equals("6"))
-                button.setBackgroundResource(R.drawable.frame2_7);
-            else if (titulo[i].equals("7"))
-                button.setBackgroundResource(R.drawable.frame2_8);
-            else if (titulo[i].equals("8"))
-                button.setBackgroundResource(R.drawable.frame2_9);
-            else if (titulo[i].equals("9"))
-                button.setBackgroundResource(R.drawable.frame2_10);
-            else if (titulo[i].equals("10"))
-                button.setBackgroundResource(R.drawable.frame2_11);
-            else if (titulo[i].equals("11"))
-                button.setBackgroundResource(R.drawable.frame2_12);
-            else if (titulo[i].equals("12"))
-                button.setBackgroundResource(R.drawable.frame2_13);
-            else if (titulo[i].equals("13"))
-                button.setBackgroundResource(R.drawable.frame2_14);
-            else if (titulo[i].equals("14"))
-                button.setBackgroundResource(R.drawable.frame2_15);
-            else if (titulo[i].equals("15"))
-                button.setBackgroundResource(R.drawable.frame2_16);
-
-            buttons.add(button);
-        }
-
-        mGestos.setAdapter(new Adaptador(buttons, mColumnWidth, mColumnHeight));
-    }
-
-    private static void mostrar2(Context context) {
-
-        ArrayList<Button> buttons = new ArrayList<>();
-        Button button;
-
-        for (int i = 0; i < titulo.length; i++) {
-            button = new Button(context);
-
-            if (titulo[i].equals("0"))
-                button.setBackgroundResource(R.drawable.frame3_1);
-            else if (titulo[i].equals("1"))
-                button.setBackgroundResource(R.drawable.frame3_2);
-            else if (titulo[i].equals("2"))
-                button.setBackgroundResource(R.drawable.frame3_3);
-            else if (titulo[i].equals("3"))
-                button.setBackgroundResource(R.drawable.frame3_4);
-            else if (titulo[i].equals("4"))
-                button.setBackgroundResource(R.drawable.frame3_5);
-            else if (titulo[i].equals("5"))
-                button.setBackgroundResource(R.drawable.frame3_6);
-            else if (titulo[i].equals("6"))
-                button.setBackgroundResource(R.drawable.frame3_7);
-            else if (titulo[i].equals("7"))
-                button.setBackgroundResource(R.drawable.frame3_8);
-            else if (titulo[i].equals("8"))
-                button.setBackgroundResource(R.drawable.frame3_9);
-            else if (titulo[i].equals("9"))
-                button.setBackgroundResource(R.drawable.frame3_10);
-            else if (titulo[i].equals("10"))
-                button.setBackgroundResource(R.drawable.frame3_11);
-            else if (titulo[i].equals("11"))
-                button.setBackgroundResource(R.drawable.frame3_12);
-            else if (titulo[i].equals("12"))
-                button.setBackgroundResource(R.drawable.frame3_13);
-            else if (titulo[i].equals("13"))
-                button.setBackgroundResource(R.drawable.frame3_14);
-            else if (titulo[i].equals("14"))
-                button.setBackgroundResource(R.drawable.frame3_15);
-            else if (titulo[i].equals("15"))
-                button.setBackgroundResource(R.drawable.frame3_16);
-            else if (titulo[i].equals("16"))
-                button.setBackgroundResource(R.drawable.frame3_17);
-            else if (titulo[i].equals("17"))
-                button.setBackgroundResource(R.drawable.frame3_18);
-            else if (titulo[i].equals("18"))
-                button.setBackgroundResource(R.drawable.frame3_19);
-            else if (titulo[i].equals("19"))
-                button.setBackgroundResource(R.drawable.frame3_20);
-            else if (titulo[i].equals("20"))
-                button.setBackgroundResource(R.drawable.frame3_21);
-            else if (titulo[i].equals("21"))
-                button.setBackgroundResource(R.drawable.frame3_22);
-            else if (titulo[i].equals("22"))
-                button.setBackgroundResource(R.drawable.frame3_23);
-            else if (titulo[i].equals("23"))
-                button.setBackgroundResource(R.drawable.frame3_24);
-            else if (titulo[i].equals("24"))
-                button.setBackgroundResource(R.drawable.frame3_25);
-
-            buttons.add(button);
-        }
-
-        mGestos.setAdapter(new Adaptador(buttons, mColumnWidth, mColumnHeight));
-    }
-
 
     private void movimiento(Context context, int posicion, int movimiento) {
 
@@ -317,7 +190,7 @@ public class PuzzleFirstFragment extends Fragment {
         titulo[posicion + movimiento] = titulo[posicion];
         titulo[posicion] = newPosicion;
 
-        switch (COLUMNAS){
+        /*switch (COLUMNAS){
             case 3:
                 mostrar(context);
                 break;
@@ -327,7 +200,9 @@ public class PuzzleFirstFragment extends Fragment {
             case 5:
                 mostrar2(context);
                 break;
-        }
+        }*/
+
+        buildPuzzle(context);
 
         if (resuelto()) {
             timer.Detener();
@@ -424,6 +299,60 @@ public class PuzzleFirstFragment extends Fragment {
             else if (direccion.equals(RIGHT)) movimiento(context, posicion, 1);
             else movimiento(context, posicion, COLUMNAS);
         }
+    }
+
+    private void setPieces(ImageView image) {
+        switch (COLUMNAS) {
+            case 3:
+                image.setImageResource(R.drawable.leon);
+                break;
+            case 4:
+                image.setImageResource(R.drawable.perro);
+                break;
+            case 5:
+                image.setImageResource(R.drawable.paleta);
+                break;
+        }
+        pieces = splitImage(image, DIMENSION);
+    }
+
+    private ArrayList<Bitmap> splitImage(ImageView image, int n) {
+
+        //For the number of rows and columns of the grid to be displayed
+        int rows,cols;
+
+        //For height and width of the small image chunks
+        int chunkHeight,chunkWidth;
+
+        //To store all the small image chunks in bitmap format in this list
+        ArrayList<Bitmap> chunkedImages = new ArrayList<Bitmap>(n);
+
+        //Getting the scaled bitmap of the source image
+        BitmapDrawable drawable = (BitmapDrawable) image.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+        rows = cols = (int) Math.sqrt(n);
+        chunkHeight = bitmap.getHeight() / rows;
+        chunkWidth = bitmap.getWidth() / cols;
+
+        //xCoord and yCoord are the pixel positions of the image chunks
+        int yCoord = 0;
+        for(int x = 0; x < rows; x++) {
+            int xCoord = 0;
+            for(int y = 0; y < cols; y++) {
+                chunkedImages.add(Bitmap.createBitmap(scaledBitmap, xCoord, yCoord, chunkWidth, chunkHeight));
+                xCoord += chunkWidth;
+            }
+            yCoord += chunkHeight;
+        }
+
+        return chunkedImages;
+
+        /* Now the chunkedImages has all the small image chunks in the form of Bitmap class.
+         * You can do what ever you want with this chunkedImages as per your requirement.
+         * I pass it to a new Activity to show all small chunks in a grid for demo.
+         * You can get the source code of this activity from my Google Drive Account.
+         */
     }
 }
 
