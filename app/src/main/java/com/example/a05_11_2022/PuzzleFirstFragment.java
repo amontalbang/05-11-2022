@@ -1,10 +1,17 @@
 package com.example.a05_11_2022;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +21,19 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,6 +53,7 @@ public class PuzzleFirstFragment extends Fragment {
     public Context context;
     private static Tiempo timer;
     private static ArrayList<Bitmap> pieces;
+    private ImageView image;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -61,10 +78,11 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
-        ImageView image = new ImageView(getContext());
+        image = new ImageView(getContext());
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
-        setPieces(image);
+        requestPermission();
+        setPieces();
         inicio();
         mezclar();
         setDimensiones();
@@ -301,8 +319,8 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
-    private void setPieces(ImageView image) {
-        switch (COLUMNAS) {
+    private void setPieces() {
+        /*switch (COLUMNAS) {
             case 3:
                 image.setImageResource(R.drawable.leon);
                 break;
@@ -312,8 +330,8 @@ public class PuzzleFirstFragment extends Fragment {
             case 5:
                 image.setImageResource(R.drawable.paleta);
                 break;
-        }
-        pieces = splitImage(image, DIMENSION);
+        }*/
+        pieces = splitImage(this.image, DIMENSION);
     }
 
     private ArrayList<Bitmap> splitImage(ImageView image, int n) {
@@ -353,6 +371,68 @@ public class PuzzleFirstFragment extends Fragment {
          * I pass it to a new Activity to show all small chunks in a grid for demo.
          * You can get the source code of this activity from my Google Drive Account.
          */
+    }
+
+    private void requestPermission() {
+        Log.d("Request", "requestPermission");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                pickPhotoFromGallery();
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+        } else {
+            pickPhotoFromGallery();
+        }
+    }
+
+    private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    pickPhotoFromGallery();
+                } else {
+                    Toast.makeText(getContext(), "Necesitas dar permiso para acceder a tus imagenes", Toast.LENGTH_LONG).show();
+                }
+            }
+    );
+
+    /*private ActivityResultLauncher<Intent> startActivityGallery = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                Log.d("Resultado obtenido", result.toString());
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Uri data = (Uri) result.getData().getData();
+                    imageStream = getContentResolver().openInputStream(selectedImage);
+                    try {
+                        InputStream imageStream = getContext().getContentResolver().openInputStream(data);
+                        Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                        image.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("Resultado", "Llega a setear la imagen");
+                    image.setImageURI(data);
+                }
+            }
+    );*/
+
+    private ActivityResultLauncher<Intent> startActivityGallery = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Uri data = (Uri) result.getData().getData();
+                        image.setImageURI(data);
+                    }
+                }
+            }
+    );
+
+    private void pickPhotoFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        Log.d("Entra", "pickPhotoFromGallery");
+        startActivityGallery.launch(intent);
     }
 }
 
