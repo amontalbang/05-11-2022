@@ -1,11 +1,15 @@
 package com.example.a05_11_2022;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +18,11 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
@@ -37,6 +46,7 @@ public class PuzzleFirstFragment extends Fragment {
     public Context context;
     private static Tiempo timer;
     private static ArrayList<Bitmap> pieces;
+    private ImageView image;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -52,6 +62,8 @@ public class PuzzleFirstFragment extends Fragment {
             COLUMNAS++;
         }
         DIMENSION = COLUMNAS * COLUMNAS;
+
+        initInternalStorage();
     }
 
     @Override
@@ -61,10 +73,10 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
-        ImageView image = new ImageView(getContext());
+        // ImageView image = new ImageView(getContext());
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
-        setPieces(image);
+        setPieces();
         inicio();
         mezclar();
         setDimensiones();
@@ -301,8 +313,8 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
-    private void setPieces(ImageView image) {
-        switch (COLUMNAS) {
+    private void setPieces() {
+        /*switch (COLUMNAS) {
             case 3:
                 image.setImageResource(R.drawable.leon);
                 break;
@@ -312,7 +324,7 @@ public class PuzzleFirstFragment extends Fragment {
             case 5:
                 image.setImageResource(R.drawable.paleta);
                 break;
-        }
+        }*/
         pieces = splitImage(image, DIMENSION);
     }
 
@@ -353,6 +365,24 @@ public class PuzzleFirstFragment extends Fragment {
          * I pass it to a new Activity to show all small chunks in a grid for demo.
          * You can get the source code of this activity from my Google Drive Account.
          */
+    }
+
+    ActivityResultLauncher<Intent> activityLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Uri uri = result.getData().getData();
+                        image.setImageURI(uri);
+                    }
+                }
+            }
+
+    );
+
+    private void initInternalStorage() {
+        Intent intent = new Intent();
+        activityLauncher.launch(intent);
     }
 }
 
