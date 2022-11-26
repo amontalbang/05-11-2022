@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -16,6 +18,8 @@ public class trans3 extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_trans3, container, false);
+        ImageView image = view.findViewById(R.id.trans3_resolved);
+        image = MainActivity.getImage();
 
         Button button3 = (Button) view.findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {

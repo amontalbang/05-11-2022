@@ -3,6 +3,8 @@ package com.example.a05_11_2022;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private static ImageView currentImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +65,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public static void setImage(ImageView image) {
+        currentImage = image;
+    }
+
+    public static ImageView getImage() {
+        return currentImage;
     }
 }

@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -28,8 +32,6 @@ import javax.security.auth.callback.Callback;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    private ImageView selectedImage;
-    private Callback listener;
 
     @Override
     public View onCreateView(
@@ -43,7 +45,7 @@ public class FirstFragment extends Fragment {
         button_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_puzzleFirstFragment);
+                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_selectorImageFragment);
             }
 
         });

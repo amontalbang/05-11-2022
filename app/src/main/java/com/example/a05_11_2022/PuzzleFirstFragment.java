@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,6 @@ public class PuzzleFirstFragment extends Fragment {
     public Context context;
     private static Tiempo timer;
     private static ArrayList<Bitmap> pieces;
-    private ImageView image;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -78,11 +78,10 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
-        image = new ImageView(getContext());
+        ImageView image = MainActivity.getImage();
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
-        requestPermission();
-        setPieces();
+        setPieces(image);
         inicio();
         mezclar();
         setDimensiones();
@@ -319,7 +318,7 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
-    private void setPieces() {
+    private void setPieces(ImageView image) {
         /*switch (COLUMNAS) {
             case 3:
                 image.setImageResource(R.drawable.leon);
@@ -331,7 +330,7 @@ public class PuzzleFirstFragment extends Fragment {
                 image.setImageResource(R.drawable.paleta);
                 break;
         }*/
-        pieces = splitImage(this.image, DIMENSION);
+        pieces = splitImage(image, DIMENSION);
     }
 
     private ArrayList<Bitmap> splitImage(ImageView image, int n) {
@@ -371,68 +370,6 @@ public class PuzzleFirstFragment extends Fragment {
          * I pass it to a new Activity to show all small chunks in a grid for demo.
          * You can get the source code of this activity from my Google Drive Account.
          */
-    }
-
-    private void requestPermission() {
-        Log.d("Request", "requestPermission");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                pickPhotoFromGallery();
-            } else {
-                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
-            }
-        } else {
-            pickPhotoFromGallery();
-        }
-    }
-
-    private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
-            new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    pickPhotoFromGallery();
-                } else {
-                    Toast.makeText(getContext(), "Necesitas dar permiso para acceder a tus imagenes", Toast.LENGTH_LONG).show();
-                }
-            }
-    );
-
-    /*private ActivityResultLauncher<Intent> startActivityGallery = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                Log.d("Resultado obtenido", result.toString());
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Uri data = (Uri) result.getData().getData();
-                    imageStream = getContentResolver().openInputStream(selectedImage);
-                    try {
-                        InputStream imageStream = getContext().getContentResolver().openInputStream(data);
-                        Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
-                        image.setImageBitmap(bitmap);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("Resultado", "Llega a setear la imagen");
-                    image.setImageURI(data);
-                }
-            }
-    );*/
-
-    private ActivityResultLauncher<Intent> startActivityGallery = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Uri data = (Uri) result.getData().getData();
-                        image.setImageURI(data);
-                    }
-                }
-            }
-    );
-
-    private void pickPhotoFromGallery() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        Log.d("Entra", "pickPhotoFromGallery");
-        startActivityGallery.launch(intent);
     }
 }
 

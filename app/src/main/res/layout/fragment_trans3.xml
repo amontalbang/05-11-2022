@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/image_paleta"
+        android:id="@+id/trans3_resolved"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:layout_marginBottom="22dp"
