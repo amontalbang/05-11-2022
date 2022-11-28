@@ -5,6 +5,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private int callbackId = 0;
     private static MediaPlayer mediaPlayer;
+    private static ImageView currentImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,5 +102,13 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.release();
         }
         binding = null;
+    }
+
+    public static void setImage(ImageView image) {
+        currentImage = image;
+    }
+
+    public static ImageView getImage() {
+        return currentImage;
     }
 }

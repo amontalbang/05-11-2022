@@ -21,6 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +54,8 @@ public class trans3 extends Fragment {
             Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_trans3, container, false);
+        ImageView image = view.findViewById(R.id.trans3_resolved);
+        image = MainActivity.getImage();
 
         victoria = MediaPlayer.create(getContext(), R.raw.victoria);
         victoria.start();

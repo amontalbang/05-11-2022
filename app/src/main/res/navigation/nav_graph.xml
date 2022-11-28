@@ -65,6 +65,9 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_trans1_to_selectorImageFragment"
+            app:destination="@id/selection" />
     </fragment>
     <fragment
         android:id="@+id/puzzleFirstFragment"
@@ -107,6 +110,9 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_trans2_to_selectorImageFragment"
+            app:destination="@id/selection" />
     </fragment>
     <fragment
         android:id="@+id/trans3"

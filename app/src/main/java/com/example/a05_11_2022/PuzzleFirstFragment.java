@@ -1,12 +1,20 @@
 package com.example.a05_11_2022;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +23,19 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -63,7 +80,7 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
-        ImageView image = new ImageView(getContext());
+        ImageView image = MainActivity.getImage();
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
         setPieces(image);
@@ -90,7 +107,18 @@ public class PuzzleFirstFragment extends Fragment {
         super.onDestroy();
     }
 
-    //Calcular las dimensiones para el puzzle
+    public WifiP2pManager.ActionListener acciones = new WifiP2pManager.ActionListener() {
+        @Override
+        public void onSuccess() {
+
+        }
+
+        @Override
+        public void onFailure(int i) {
+
+        }
+    };
+
     private void setDimensiones() {
         ViewTreeObserver vto = mGestos.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -274,7 +302,7 @@ public class PuzzleFirstFragment extends Fragment {
 
     // Método que recoge las fotos
     private void setPieces(ImageView image) {
-        switch (COLUMNAS) {
+        /*switch (COLUMNAS) {
             case 3:
                 image.setImageResource(R.drawable.leon);
                 break;
@@ -284,7 +312,7 @@ public class PuzzleFirstFragment extends Fragment {
             case 5:
                 image.setImageResource(R.drawable.paleta);
                 break;
-        }
+        }*/
         pieces = splitImage(image, DIMENSION);
     }
 

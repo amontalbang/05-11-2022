@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -20,6 +22,8 @@ public class trans1 extends Fragment {
     ) {
 
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
+        ImageView image = view.findViewById(R.id.trans1_resolved);
+        image = MainActivity.getImage();
 
         victoria = MediaPlayer.create(getContext(), R.raw.victoria);
         victoria.start();
@@ -28,7 +32,7 @@ public class trans1 extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_trans1_to_puzzleFirstFragment);
+                Navigation.findNavController(view).navigate(R.id.action_trans1_to_selectorImageFragment);
             }
 
         });
