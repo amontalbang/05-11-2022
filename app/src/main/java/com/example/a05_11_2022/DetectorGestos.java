@@ -2,6 +2,7 @@ package com.example.a05_11_2022;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -17,6 +18,7 @@ public class DetectorGestos extends GridView{
     private static final int SWIPE_MIN_DISTANCE = 100;
     private static final int SWIPE_MAX_OFF_PATH = 100;
     private static final int SWIPE_THRESHOLD_VELOCITY = 100;
+    private static MediaPlayer pop;
 
     public DetectorGestos(Context context) {
         super(context);
@@ -41,6 +43,7 @@ public class DetectorGestos extends GridView{
 
     private void init(final Context context) {
         gdetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+
             @Override
             public boolean onDown(MotionEvent event) {
                 return true;
@@ -48,6 +51,8 @@ public class DetectorGestos extends GridView{
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+                pop = MediaPlayer.create(getContext(), R.raw.pop);
                 final int posicion = DetectorGestos.this.pointToPosition(Math.round(e1.getX()), Math.round(e1.getY()));
 
                 PuzzleFirstFragment puzzleFirstFragment = new PuzzleFirstFragment();
@@ -59,9 +64,11 @@ public class DetectorGestos extends GridView{
                     if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE) {
                         //implementar movimientos hacia arriba
                         puzzleFirstFragment.moverCeldas(context, puzzleFirstFragment.UP, posicion);
+                        pop.start();
                     } else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE) {
                         //implementar movimientos hacia abajo
                         puzzleFirstFragment.moverCeldas(context, puzzleFirstFragment.DOWN, posicion);
+                        pop.start();
 
                     }
                 } else {
@@ -71,10 +78,12 @@ public class DetectorGestos extends GridView{
                     if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE) {
                         //implementar movimientos hacia izquierda
                         puzzleFirstFragment.moverCeldas(context, puzzleFirstFragment.LEFT, posicion);
+                        pop.start();
 
                     } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE) {
                         //implementar movimientos hacia derecha
                         puzzleFirstFragment.moverCeldas(context, puzzleFirstFragment.RIGHT, posicion);
+                        pop.start();
 
                     }
                 }

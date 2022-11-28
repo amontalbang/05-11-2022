@@ -7,23 +7,23 @@
     tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/button_play"
+        android:id="@+id/button_normal"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:text="@string/button_play"
-        app:layout_constraintBottom_toTopOf="@+id/button_scores"
+        app:layout_constraintBottom_toTopOf="@+id/button_gallery"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_scores"
+        android:id="@+id/button_gallery"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:text="@string/button_scores"
-        app:layout_constraintBottom_toTopOf="@+id/button_exit"
+        app:layout_constraintBottom_toTopOf="@+id/button_camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_marginBottom="57dp"
         android:contentDescription="@string/logo_main"
         android:src="@mipmap/captura"
-        app:layout_constraintBottom_toTopOf="@+id/button_play"
+        app:layout_constraintBottom_toTopOf="@+id/button_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/button_exit"
+        android:id="@+id/button_camera"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"

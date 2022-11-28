@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
 import com.example.a05_11_2022.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
@@ -22,16 +23,16 @@ public class FirstFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        Button button_play = (Button) view.findViewById(R.id.button_play);
+        Button button_play = (Button) view.findViewById(R.id.button_normal);
         button_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_puzzleFirstFragment);
+                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_selection);
             }
 
         });
 
-        Button button_scores = (Button) view.findViewById(R.id.button_scores);
+        Button button_scores = (Button) view.findViewById(R.id.button_gallery);
         button_scores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +41,7 @@ public class FirstFragment extends Fragment {
 
         });
 
-        Button button_exit = (Button) view.findViewById(R.id.button_exit);
+        Button button_exit = (Button) view.findViewById(R.id.button_camera);
         button_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,8 +54,6 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     @Override
@@ -62,5 +61,6 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 
 }

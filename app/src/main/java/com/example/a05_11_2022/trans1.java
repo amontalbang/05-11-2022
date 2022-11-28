@@ -1,5 +1,6 @@
 package com.example.a05_11_2022;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,9 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-
 public class trans1 extends Fragment {
+
+    private static MediaPlayer victoria;
 
     @Override
     public View onCreateView(
@@ -18,6 +20,9 @@ public class trans1 extends Fragment {
     ) {
 
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
+
+        victoria = MediaPlayer.create(getContext(), R.raw.victoria);
+        victoria.start();
 
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {

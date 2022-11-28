@@ -7,8 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Puntuaciones extends Fragment {
+
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager lManager;
 
     @Override
     public View onCreateView(
@@ -18,6 +24,20 @@ public class Puntuaciones extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_puntuaciones, container, false);
 
+        // Obtener el Recycler
+        recycler = (RecyclerView) view.findViewById(R.id.recycler);
+        recycler.setHasFixedSize(true);
+
+        ConexionSQLite conexionSQLite = new ConexionSQLite(getContext());
+
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(getContext());
+        recycler.setLayoutManager(lManager);
+
+        // Crear un nuevo adaptador
+        adapter = new PuntAdaptador(conexionSQLite.mostrarPunt());
+        recycler.setAdapter(adapter);
+
         Button button = (Button) view.findViewById(R.id.button_volver);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,7 +46,6 @@ public class Puntuaciones extends Fragment {
             }
 
         });
-
         return view;
     }
 }
