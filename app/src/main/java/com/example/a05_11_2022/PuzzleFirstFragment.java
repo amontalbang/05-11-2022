@@ -133,17 +133,6 @@ public class PuzzleFirstFragment extends Fragment {
                 mColumnWidth = displayWidth / COLUMNAS;
                 mColumnHeight = requiredHeight / COLUMNAS;
 
-                /*switch (COLUMNAS){
-                    case 3:
-                        mostrar(getContext());
-                        break;
-                    case 4:
-                        mostrar1(getContext());
-                        break;
-                    case 5:
-                        mostrar2(getContext());
-                        break;
-                }*/
                 buildPuzzle(getContext());
             }
         });
@@ -206,18 +195,6 @@ public class PuzzleFirstFragment extends Fragment {
         String newPosicion = titulo[posicion + movimiento];
         titulo[posicion + movimiento] = titulo[posicion];
         titulo[posicion] = newPosicion;
-
-        /*switch (COLUMNAS){
-            case 3:
-                mostrar(context);
-                break;
-            case 4:
-                mostrar1(context);
-                break;
-            case 5:
-                mostrar2(context);
-                break;
-        }*/
 
         buildPuzzle(context);
 
@@ -319,32 +296,17 @@ public class PuzzleFirstFragment extends Fragment {
     }
 
     private void setPieces(ImageView image) {
-        /*switch (COLUMNAS) {
-            case 3:
-                image.setImageResource(R.drawable.leon);
-                break;
-            case 4:
-                image.setImageResource(R.drawable.perro);
-                break;
-            case 5:
-                image.setImageResource(R.drawable.paleta);
-                break;
-        }*/
         pieces = splitImage(image, DIMENSION);
     }
 
     private ArrayList<Bitmap> splitImage(ImageView image, int n) {
 
-        //For the number of rows and columns of the grid to be displayed
         int rows,cols;
 
-        //For height and width of the small image chunks
         int chunkHeight,chunkWidth;
 
-        //To store all the small image chunks in bitmap format in this list
         ArrayList<Bitmap> chunkedImages = new ArrayList<Bitmap>(n);
 
-        //Getting the scaled bitmap of the source image
         BitmapDrawable drawable = (BitmapDrawable) image.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
@@ -352,7 +314,6 @@ public class PuzzleFirstFragment extends Fragment {
         chunkHeight = bitmap.getHeight() / rows;
         chunkWidth = bitmap.getWidth() / cols;
 
-        //xCoord and yCoord are the pixel positions of the image chunks
         int yCoord = 0;
         for(int x = 0; x < rows; x++) {
             int xCoord = 0;
@@ -364,12 +325,6 @@ public class PuzzleFirstFragment extends Fragment {
         }
 
         return chunkedImages;
-
-        /* Now the chunkedImages has all the small image chunks in the form of Bitmap class.
-         * You can do what ever you want with this chunkedImages as per your requirement.
-         * I pass it to a new Activity to show all small chunks in a grid for demo.
-         * You can get the source code of this activity from my Google Drive Account.
-         */
     }
 }
 

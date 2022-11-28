@@ -1,6 +1,10 @@
 package com.example.a05_11_2022;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +25,7 @@ public class trans1 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
         ImageView image = view.findViewById(R.id.trans1_resolved);
-        image = MainActivity.getImage();
+        image.setImageDrawable(MainActivity.getImage().getDrawable());
 
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {

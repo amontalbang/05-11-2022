@@ -19,7 +19,7 @@ public class trans3 extends Fragment {
     ) {
         View view = inflater.inflate(R.layout.fragment_trans3, container, false);
         ImageView image = view.findViewById(R.id.trans3_resolved);
-        image = MainActivity.getImage();
+        image.setImageDrawable(MainActivity.getImage().getDrawable());
 
         Button button3 = (Button) view.findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
