@@ -45,12 +45,12 @@ public class SelectorImageFragment extends Fragment {
         image = view.findViewById(R.id.imageView6);
 
         Button button_start = view.findViewById(R.id.button_start);
-        button_start.setOnClickListener(new View.OnClickListener() {
+        /*button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_selectorImageFragment_to_puzzleFirstFragment);
             }
-        });
+        });*/
 
         Button button_gallery = view.findViewById(R.id.button_gallery);
         button_gallery.setOnClickListener(new View.OnClickListener() {

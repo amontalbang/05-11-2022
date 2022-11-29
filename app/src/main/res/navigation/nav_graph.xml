@@ -57,7 +57,7 @@
             android:id="@+id/action_trans1_to_FirstFragment"
             app:destination="@id/FirstFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_trans1_to_puzzleFirstFragment"
@@ -100,9 +100,9 @@
         tools:layout="@layout/fragment_trans2" >
         <action
             android:id="@+id/action_trans2_to_puzzleFirstFragment"
-            app:destination="@id/puzzleFirstFragment"
+            app:destination="@id/selection"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_trans2_to_FirstFragment"
