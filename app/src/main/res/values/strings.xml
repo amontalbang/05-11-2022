@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">PuzzleDroid</string>
     <string name="action_settings">Settings</string>
+
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -11,6 +13,8 @@
     <string name="select_image">GALERÍA</string>
     <string name="take_photo">CÁMARA</string>
 
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_first_fragment">PuzzleDroid</string>
     <string name="hello_second_fragment">Ayuda</string>
     <string name="tool_Ayuda">Ayuda</string>
@@ -24,8 +28,6 @@
     <string name="foto_paleta">paleta</string>
     <string name="si">SI</string>
     <string name="no">NO</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo_main">logo_main</string>
     <string name="logo_team">logo_team</string>
@@ -40,9 +42,29 @@
     <string name="tu_tiempo">Guarda tu puntuación escribiendo aquí tu nombre</string>
     <string name="escribe_tu_nombre_aqu">nombre</string>
     <string name="tiempo">Tiempo</string>
-    <string name="campo_punt">Tu tiempo 00:00:00</string>
-    <string name="puntuaciones">puntuaciones</string>
     <string name="volver">Volver</string>
     <string name="salir">Salir</string>
+    <string name="scores_player">Jugador</string>
+    <string name="scores_score">Puntuacion</string>
+    <string name="record">¡¡¡ FELICIDADES !!!   "ES UN NUEVO  RÉCORD</string>
+    <string name="newRecord">newRecord</string>
+    <string name="mode_normal">Normal</string>
+    <string name="mode_gallery">Seleccionar fotos de la galeria</string>
+    <string name="mode_camera">hacer foto</string>
+    <string name="camara">camara</string>
+    <string name="galeria">galeria</string>
+    <string name="normal">normal</string>
+    <string name="channel_name">"¡NUEVO RÉCORD"</string>
+    <string name="channel_description">"Se ha registrado un nuevo récord en PuzzleDroid"</string>
+    <string name="enlace">Música de https://www.fiftysounds.com/es/</string>
+    <string name="m_sica_de_la_app">Música de la app</string>
+    <string name="titulo_cancion">Obra: Luces de Neón</string>
+    <string name="select_button">Seleccionar</string>
+    <string name="sonido_on">Sonido On</string>
+    <string name="sonido_off">Sonido Off</string>
+    <string name="seleccionar">Selecciona música del dispositivo</string>
+    <string name="dj">DJ</string>
+    <string name="atras">Atrás</string>
+    <string name="dj1">DJ</string>
 
 </resources>

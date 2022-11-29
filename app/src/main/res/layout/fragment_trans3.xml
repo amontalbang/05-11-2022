@@ -10,7 +10,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="8dp"
         android:width="150dp"
         android:height="50dp"
         android:text="@string/tool_salir3"
@@ -23,9 +23,9 @@
         android:id="@+id/trans3_resolved"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/foto_paleta"
-        app:layout_constraintBottom_toTopOf="@+id/campoPuntuacion"
+        app:layout_constraintBottom_toTopOf="@+id/puntuacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,36 +43,23 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ImageContrastCheck" />
 
-    <ImageView
-        android:id="@+id/nivel_3"
-        android:layout_width="272dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="4dp"
-        android:contentDescription="@string/nivel3Compl"
-        app:layout_constraintBottom_toTopOf="@+id/image_paleta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142"
-        tools:src="@mipmap/nivel3" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/tu_tiempo"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/campoNombre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/campoNombre"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="12dp"
         android:hint="@string/escribe_tu_nombre_aqu"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/button3"
@@ -82,23 +69,39 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/campoPuntuacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/campo_punt"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/campoId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="145dp"
         android:layout_marginBottom="19dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/campoPuntuacion"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/puntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="272dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="7dp"
+        android:contentDescription="@string/nivel3Compl"
+        android:src="@mipmap/nivel3"
+        app:layout_constraintBottom_toTopOf="@+id/image_paleta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

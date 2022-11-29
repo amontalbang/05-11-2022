@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Build;
@@ -54,6 +55,7 @@ public class PuzzleFirstFragment extends Fragment {
     public Context context;
     private static Tiempo timer;
     private static ArrayList<Bitmap> pieces;
+    private static int tiempo;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -95,7 +97,6 @@ public class PuzzleFirstFragment extends Fragment {
 
     public void onPause() {
         super.onPause();
-
     }
 
     public void onDestroyView() {
@@ -150,6 +151,7 @@ public class PuzzleFirstFragment extends Fragment {
         return result;
     }
 
+    // Inicio y montaje del puzzle
     private void inicio() {
         mGestos.setNumColumns(COLUMNAS);
         titulo = new String[DIMENSION];
@@ -163,6 +165,7 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
+    // Mezclado de piezas
     private void mezclar() {
         int index;
         String temp;
@@ -176,6 +179,7 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
+    // Mostrado de puzzle en el grid
     private static void buildPuzzle(Context context) {
         ArrayList<Button> buttons = new ArrayList<>();
         Button button;
@@ -190,8 +194,8 @@ public class PuzzleFirstFragment extends Fragment {
         mGestos.setAdapter(new Adaptador(buttons, mColumnWidth, mColumnHeight));
     }
 
+    //
     private void movimiento(Context context, int posicion, int movimiento) {
-
         String newPosicion = titulo[posicion + movimiento];
         titulo[posicion + movimiento] = titulo[posicion];
         titulo[posicion] = newPosicion;
@@ -200,11 +204,12 @@ public class PuzzleFirstFragment extends Fragment {
 
         if (resuelto()) {
             timer.Detener();
-            String tiempo = Integer.toString(timer.getSegundos());
+            tiempo = timer.getSegundos();
             goToPantalla();
         }
     }
 
+    // Metodo de cambio de pantalla al realizar el puzzle
     private void goToPantalla(){
 
         switch (COLUMNAS){
@@ -215,13 +220,14 @@ public class PuzzleFirstFragment extends Fragment {
                 Navigation.findNavController(vista).navigate(R.id.action_puzzleFirstFragment_to_trans2);
                 break;
             case 5:
-
-                Navigation.findNavController(vista).navigate(R.id.action_puzzleFirstFragment_to_trans3);
+                Bundle bundle = new Bundle();
+                bundle.putInt("score", tiempo);
+                Navigation.findNavController(vista).navigate(R.id.action_puzzleFirstFragment_to_trans3, bundle);
                 break;
         }
     }
 
-
+    // Comprobacion de puzzle resuelto
     private static boolean resuelto() {
 
         boolean resuelto = false;
@@ -238,9 +244,9 @@ public class PuzzleFirstFragment extends Fragment {
         return resuelto;
     }
 
+    // Logica para movimiento de las piezas
     public void moverCeldas(Context context, String direccion, int posicion) {
 
-        //celda arriba-izq
         if (posicion == 0) {
             if (direccion.equals("right")) {
                 movimiento(context, posicion, 1);
@@ -249,24 +255,24 @@ public class PuzzleFirstFragment extends Fragment {
             } else {
                 Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
             }
-            //celda arriba-centro
+
         } else if (posicion > 0 && posicion < COLUMNAS -1) {
             if (direccion.equals(LEFT)) movimiento(context, posicion, -1);
             else if (direccion.equals(DOWN)) movimiento(context, posicion, COLUMNAS);
             else if (direccion.equals(RIGHT)) movimiento(context, posicion, 1);
             else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
-            //celda arriba-derecha
+
         } else if (posicion == COLUMNAS -1) {
             if (direccion.equals(LEFT)) movimiento(context, posicion, -1);
             else if (direccion.equals(DOWN)) movimiento(context, posicion, COLUMNAS);
             else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
-            //celdas izquierdas
+
         } else if (posicion > COLUMNAS -1 && posicion < DIMENSION - COLUMNAS && posicion % COLUMNAS == 0) {
             if (direccion.equals(UP)) movimiento(context, posicion, -COLUMNAS);
             else if (direccion.equals(RIGHT)) movimiento(context, posicion, 1);
             else if (direccion.equals(DOWN)) movimiento(context, posicion, COLUMNAS);
             else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
-            //lado derecho y celdas esquina derecha
+
         } else if (posicion == COLUMNAS * 2 - 1 || posicion == COLUMNAS *3 - 1) {
             if (direccion.equals(UP)) movimiento(context, posicion, -COLUMNAS);
             else if (direccion.equals(LEFT)) movimiento(context, posicion, -1);
@@ -275,18 +281,18 @@ public class PuzzleFirstFragment extends Fragment {
                 if (posicion <= DIMENSION - COLUMNAS -1) movimiento(context, posicion, COLUMNAS);
                 else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
             } else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
-            //
+
         } else if (posicion == DIMENSION - COLUMNAS) {
             if (direccion.equals(UP)) movimiento(context, posicion, -COLUMNAS);
             else if (direccion.equals(RIGHT)) movimiento(context, posicion, 1);
             else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
-            //
+
         } else if (posicion < DIMENSION - 1 && posicion > DIMENSION - COLUMNAS) {
             if (direccion.equals(UP)) movimiento(context, posicion, -COLUMNAS);
             else if (direccion.equals(LEFT)) movimiento(context, posicion, -1);
             else if (direccion.equals(RIGHT)) movimiento(context, posicion, 1);
             else Toast.makeText(context, "Movimiento NO Válido", Toast.LENGTH_SHORT).show();
-            //
+
         } else {
             if (direccion.equals(UP)) movimiento(context, posicion, -COLUMNAS);
             else if (direccion.equals(LEFT)) movimiento(context, posicion, -1);
@@ -295,10 +301,12 @@ public class PuzzleFirstFragment extends Fragment {
         }
     }
 
+    // Método que recoge las fotos
     private void setPieces(ImageView image) {
         pieces = splitImage(image, DIMENSION);
     }
 
+    // Metodo para fragmentar y escalar las imagenes
     private ArrayList<Bitmap> splitImage(ImageView image, int n) {
 
         int rows,cols;
@@ -323,7 +331,6 @@ public class PuzzleFirstFragment extends Fragment {
             }
             yCoord += chunkHeight;
         }
-
         return chunkedImages;
     }
 }

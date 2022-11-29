@@ -3,6 +3,7 @@ package com.example.a05_11_2022;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-
 public class trans1 extends Fragment {
+
+    private static MediaPlayer victoria;
 
     @Override
     public View onCreateView(
@@ -26,6 +28,9 @@ public class trans1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
         ImageView image = view.findViewById(R.id.trans1_resolved);
         image.setImageDrawable(MainActivity.getImage().getDrawable());
+
+        victoria = MediaPlayer.create(getContext(), R.raw.victoria);
+        victoria.start();
 
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {

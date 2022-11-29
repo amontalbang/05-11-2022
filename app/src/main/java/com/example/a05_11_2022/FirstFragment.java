@@ -41,16 +41,16 @@ public class FirstFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        Button button_play = (Button) view.findViewById(R.id.button_play);
+        Button button_play = (Button) view.findViewById(R.id.button_normal);
         button_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_selectorImageFragment);
+                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_selection);
             }
 
         });
 
-        Button button_scores = (Button) view.findViewById(R.id.button_scores);
+        Button button_scores = (Button) view.findViewById(R.id.button_gallery);
         button_scores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +59,7 @@ public class FirstFragment extends Fragment {
 
         });
 
-        Button button_exit = (Button) view.findViewById(R.id.button_exit);
+        Button button_exit = (Button) view.findViewById(R.id.button_camera);
         button_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

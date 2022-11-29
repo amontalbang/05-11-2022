@@ -8,4 +8,10 @@
         android:title="@string/tool_Ayuda"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/Música"
+        android:orderInCategory="100"
+        android:title="Música"
+        app:showAsAction="never" />
+
 </menu>

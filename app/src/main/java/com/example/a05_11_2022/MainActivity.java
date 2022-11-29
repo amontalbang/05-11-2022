@@ -1,5 +1,7 @@
 package com.example.a05_11_2022;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private int callbackId = 0;
+    private static MediaPlayer mediaPlayer;
     private static ImageView currentImage;
 
     @Override
@@ -32,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        ConexionSQLite dbHelper = new ConexionSQLite(MainActivity.this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.loop);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
     }
 
@@ -57,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
             Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.webViewFragment);
         }
 
+        if (id == R.id.Música) {
+            Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.musica);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -65,6 +80,28 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public static void start(){
+        mediaPlayer.start();
+    }
+
+    public static void pause(){
+        mediaPlayer.pause();
+    }
+
+    public static void stop(){
+        mediaPlayer.stop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+        binding = null;
     }
 
     public static void setImage(ImageView image) {
