@@ -6,10 +6,12 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -40,7 +42,7 @@ import Utils.Utilidades;
 
 public class trans3 extends Fragment {
 
-    private static final String CHANNEL_ID = "PuzzleDroid";
+    private static final String CHANNEL_ID = "PuzzleDroid_Record";
     private EditText name;
     private int newTime;
     private int oldTime;
@@ -71,6 +73,7 @@ public class trans3 extends Fragment {
             toast.setDuration(Toast.LENGTH_LONG);
             toast.setView(layout);
             toast.show();
+            showPushNotification();
         }
 
         TextView puntuacion = (TextView) view.findViewById(R.id.puntuacion);
@@ -125,5 +128,36 @@ public class trans3 extends Fragment {
 
         if (!permissions)
             ActivityCompat.requestPermissions(getActivity(), permissionsId, callbackId);
+    }
+
+    private void showPushNotification() {
+        createNotificationChannel();
+
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle("NUEVO RÉCORD en PuzzleDroid")
+                .setContentText("Se ha producido un nuevo Récord en el juego, ¡Corre, ve a superarlo!")
+                .setColor(Color.RED)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+        notificationManager.notify(11, builder.build());
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
