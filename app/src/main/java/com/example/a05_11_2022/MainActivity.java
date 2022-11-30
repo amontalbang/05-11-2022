@@ -104,6 +104,16 @@ public class MainActivity extends AppCompatActivity {
         binding = null;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+        binding = null;
+    }
+
     public static void setImage(ImageView image) {
         currentImage = image;
     }

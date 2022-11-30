@@ -86,6 +86,7 @@ public class PuzzleFirstFragment extends Fragment {
         } else {
             image = new ImageView(getContext());
             image.setImageDrawable(this.setNormalImage());
+            MainActivity.setImage(image);
         }
 
         // si no se recupera imagen meter la imagen desde el proyecto en funcion de las columnas
