@@ -80,7 +80,15 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
-        ImageView image = MainActivity.getImage();
+        ImageView image;
+        if (MainActivity.getImage() != null) {
+            image = MainActivity.getImage();
+        } else {
+            image = new ImageView(getContext());
+            image.setImageDrawable(this.setNormalImage());
+        }
+
+        // si no se recupera imagen meter la imagen desde el proyecto en funcion de las columnas
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
         setPieces(image);
@@ -332,6 +340,19 @@ public class PuzzleFirstFragment extends Fragment {
             yCoord += chunkHeight;
         }
         return chunkedImages;
+    }
+
+    private Drawable setNormalImage() {
+        switch (COLUMNAS) {
+            case 3:
+                return getContext().getDrawable(R.drawable.leon);
+            case 4:
+                return getContext().getDrawable(R.drawable.perro);
+            case 5:
+                return getContext().getDrawable(R.drawable.paleta);
+            default:
+                return null;
+        }
     }
 }
 

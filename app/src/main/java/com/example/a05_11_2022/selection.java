@@ -45,6 +45,7 @@ public class selection extends Fragment {
         button_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.setImage(null);
                 Navigation.findNavController(view).navigate(R.id.action_selection_to_puzzleFirstFragment2);
             }
 
