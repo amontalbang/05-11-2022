@@ -5,19 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import java.io.File;
 
 public class SelectorImageFragment extends Fragment {
 
@@ -132,8 +130,13 @@ public class SelectorImageFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        Bundle extras = result.getData().getExtras();
-                        Bitmap bitmap = (Bitmap) extras.get("data");
+                        //Bundle extras = result.getData().getExtras();
+                        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                        File f = new File(currentPhotoPath);
+                        Uri contentUri = Uri.fromFile(f);
+                        mediaScanIntent.setData(contentUri);
+                        getActivity().sendBroadcast(mediaScanIntent);
+                        Bitmap bitmap = BitmapFactory.decodeFile(getExternalFilesDir(null)+"/"+"foto_ref");
                         image.setImageBitmap(bitmap);
                         MainActivity.setImage(image);
                     }
@@ -149,6 +152,16 @@ public class SelectorImageFragment extends Fragment {
 
     private void takePhotoFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File foto = new File(getExternalFilesDir(null), "foto_ref");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(foto));
         startActivityCamera.launch(intent);
+    }
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.getActivity().sendBroadcast(mediaScanIntent);
     }
 }
