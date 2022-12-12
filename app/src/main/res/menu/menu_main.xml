@@ -14,4 +14,10 @@
         android:title="Música"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/Idioma"
+        android:orderInCategory="100"
+        android:title="Idioma"
+        app:showAsAction="never" />
+
 </menu>

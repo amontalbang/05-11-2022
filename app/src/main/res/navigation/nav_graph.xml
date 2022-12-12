@@ -35,11 +35,14 @@
         <action
             android:id="@+id/action_FirstFragment_to_musica"
             app:destination="@id/musica" />
+        <action
+            android:id="@+id/action_FirstFragment_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.a05_11_2022.WebViewFragment"
-        android:label="Ayuda"
+        android:label="@string/tool_Ayuda"
         tools:layout="@layout/fragment_web_view" >
         <action
             android:id="@+id/action_webViewFragment_to_FirstFragment"
@@ -51,7 +54,7 @@
     <fragment
         android:id="@+id/trans1"
         android:name="com.example.a05_11_2022.trans1"
-        android:label="Nivel 1 completado"
+        android:label="@string/nivel_1_completado"
         tools:layout="@layout/fragment_trans1" >
         <action
             android:id="@+id/action_trans1_to_FirstFragment"
@@ -72,7 +75,7 @@
     <fragment
         android:id="@+id/puzzleFirstFragment"
         android:name="com.example.a05_11_2022.PuzzleFirstFragment"
-        android:label="Completa el puzzle"
+        android:label="@string/label_first_fragment"
         tools:layout="@layout/fragment_puzzle_first" >
         <action
             android:id="@+id/action_puzzleFirstFragment_to_trans1"
@@ -96,7 +99,7 @@
     <fragment
         android:id="@+id/trans2"
         android:name="com.example.a05_11_2022.trans2"
-        android:label="Nivel 2 completado"
+        android:label="@string/nivel_2_completado"
         tools:layout="@layout/fragment_trans2" >
         <action
             android:id="@+id/action_trans2_to_puzzleFirstFragment"
@@ -117,7 +120,7 @@
     <fragment
         android:id="@+id/trans3"
         android:name="com.example.a05_11_2022.trans3"
-        android:label="Juego completado"
+        android:label="@string/nivel_3_completado"
         tools:layout="@layout/fragment_trans3" >
         <action
             android:id="@+id/action_trans3_to_FirstFragment"
@@ -144,7 +147,7 @@
     <fragment
         android:id="@+id/puntuaciones"
         android:name="com.example.a05_11_2022.Puntuaciones"
-        android:label="Puntuaciones"
+        android:label="@string/puntuaciones"
         tools:layout="@layout/fragment_puntuaciones" >
         <action
             android:id="@+id/action_puntuaciones_to_FirstFragment"
@@ -156,7 +159,7 @@
     <fragment
         android:id="@+id/selection"
         android:name="com.example.a05_11_2022.selection"
-        android:label="Modo de juego"
+        android:label="@string/modo_juego"
         tools:layout="@layout/fragment_selection" >
         <action
             android:id="@+id/action_selection_to_puzzleFirstFragment2"
@@ -165,10 +168,19 @@
     <fragment
         android:id="@+id/musica"
         android:name="com.example.a05_11_2022.Musica"
-        android:label="Música"
+        android:label="@string/musica"
         tools:layout="@layout/fragment_musica" >
         <action
             android:id="@+id/action_musica_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.a05_11_2022.Login"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
