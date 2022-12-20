@@ -5,10 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Puntuaciones extends Fragment {
 
@@ -35,7 +40,10 @@ public class Puntuaciones extends Fragment {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new PuntAdaptador(conexionSQLite.mostrarPunt());
+        //adapter = new PuntAdaptador(FirebaseDatabase.mostrarPunts());
+        //recycler.setAdapter(adapter);
+
+        adapter = new PuntAdaptador(new ArrayList<PuntModelo>());
         recycler.setAdapter(adapter);
 
         Button button = (Button) view.findViewById(R.id.button_volver);
@@ -47,5 +55,20 @@ public class Puntuaciones extends Fragment {
 
         });
         return view;
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        FirebaseDatabase.mostrarPunts();
+    }
+
+    public void setTopTable(List<PuntModelo> puntuaciones){
+        /*adapter = new PuntAdaptador(puntuaciones);
+        recycler.setAdapter(adapter);
+        adapter = new PuntAdaptador(new ArrayList<PuntModelo>());
+        recycler.setAdapter(adapter);*/
+        adapter = new PuntAdaptador(puntuaciones);
+        recycler.setAdapter(adapter);
     }
 }

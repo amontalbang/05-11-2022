@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -36,7 +37,16 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import Utils.Utilidades;
 
@@ -49,6 +59,8 @@ public class trans3 extends Fragment {
     private String scoreName;
     private int callbackId = 0;
     private static MediaPlayer victoria;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore mFirestore;
 
     @Override
     public View onCreateView(
@@ -112,6 +124,18 @@ public class trans3 extends Fragment {
                 Log.d("Nuevo registro añadido","Uri:" + uri);
                 Toast.makeText(getContext(),"Puntuacion guardada en calendar", Toast.LENGTH_SHORT).show();
 
+                /** Registrar puntuacion en DataBase*/
+                mAuth = FirebaseAuth.getInstance();
+                mFirestore = FirebaseFirestore.getInstance();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userName = scoreName;
+                String email = user.getEmail();
+                int punt = newTime;
+                Log.d("db userName", userName);
+                Log.d("db email", email);
+                Log.d("db punt", Integer.toString(newTime));
+                registroPuntCloud(userName, email, punt);
+
                 Navigation.findNavController(view).navigate(R.id.action_trans3_to_FirstFragment);
             }
 
@@ -160,4 +184,23 @@ public class trans3 extends Fragment {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    private void registroPuntCloud(String userName, String  email, int punt){
+        Map <String, Object> map = new HashMap<>();
+        map.put("nombre", userName);
+        map.put("usuario", email);
+        map.put("puntuacion", punt);
+
+        mFirestore.collection("Puntuaciones").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getContext(), "Puntuacion guardada en base de datos", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "NO se guardó la puntuación en la base de datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+        }
 }

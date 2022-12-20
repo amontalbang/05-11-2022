@@ -67,4 +67,5 @@
     <string name="puntuaciones">Scores</string>
     <string name="modo_juego">Game mode</string>
     <string name="musica">Music</string>
+    <string name="Select_photo">Image for the next level</string>
 </resources>

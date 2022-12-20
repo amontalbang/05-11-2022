@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class PuntAdaptador extends RecyclerView.Adapter<PuntAdaptador.PuntViewHolder> {
+
     private List<PuntModelo> items;
 
     public static class PuntViewHolder extends RecyclerView.ViewHolder {
@@ -47,5 +48,10 @@ public class PuntAdaptador extends RecyclerView.Adapter<PuntAdaptador.PuntViewHo
         viewHolder.nombre.setText(items.get(i).getNombre());
         viewHolder.puntuacion.setText("Tiempo: "+ String.valueOf(items.get(i).getTiempo()) + " seg");
         viewHolder.posicion.setText("Posición "+ (i + 1));
+    }
+
+    public void updateItem(List<PuntModelo> lista){
+        this.items = lista;
+        notifyDataSetChanged();
     }
 }

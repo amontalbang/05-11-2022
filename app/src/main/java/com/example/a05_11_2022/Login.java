@@ -63,8 +63,9 @@ public class Login extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_login_to_FirstFragment);
+                /*Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);*/
             }
-
         });
         return view;
     }
@@ -72,7 +73,6 @@ public class Login extends Fragment {
     public void signOut(){
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(getContext(), MainActivity.class);
-        MainActivity.stop();
         startActivity(intent);
         //finish();
     }

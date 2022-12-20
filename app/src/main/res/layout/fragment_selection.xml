@@ -7,7 +7,7 @@
     tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/button_normal"
+        android:id="@+id/button_play"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="22dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_gallery"
+        android:id="@+id/button_scores"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginBottom="23dp"
@@ -41,7 +41,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/button_camera"
+        android:id="@+id/button_exit"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="42dp"
@@ -57,7 +57,7 @@
         android:layout_height="49dp"
         android:contentDescription="@string/camara"
         android:src="@mipmap/camera"
-        app:layout_constraintBottom_toTopOf="@+id/button_camera"
+        app:layout_constraintBottom_toTopOf="@+id/button_exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ImageContrastCheck" />
@@ -68,7 +68,7 @@
         android:layout_height="55dp"
         android:contentDescription="@string/galeria"
         android:src="@mipmap/galeria"
-        app:layout_constraintBottom_toTopOf="@+id/button_gallery"
+        app:layout_constraintBottom_toTopOf="@+id/button_scores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ImageContrastCheck" />
@@ -79,7 +79,7 @@
         android:layout_height="51dp"
         android:contentDescription="@string/normal"
         android:src="@mipmap/normal"
-        app:layout_constraintBottom_toTopOf="@+id/button_normal"
+        app:layout_constraintBottom_toTopOf="@+id/button_play"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />

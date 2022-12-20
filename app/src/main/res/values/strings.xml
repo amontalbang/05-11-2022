@@ -94,5 +94,7 @@
     <string name="puntuaciones">Puntuaciones</string>
     <string name="modo_juego">Modo de juego</string>
     <string name="musica">Música</string>
+    <string name="Select_photo">Imagen para el siguiente nivel</string>
+    <string name="recargar" translatable="false">recargar</string>
 
 </resources>

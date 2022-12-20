@@ -12,11 +12,9 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -52,7 +50,7 @@ public class SelectorImageFragment extends Fragment {
             }
         });*/
 
-        Button button_gallery = view.findViewById(R.id.button_gallery);
+        Button button_gallery = view.findViewById(R.id.button_scores);
         button_gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +59,7 @@ public class SelectorImageFragment extends Fragment {
             }
         });
 
-        Button button_camera = view.findViewById(R.id.button_camera);
+        Button button_camera = view.findViewById(R.id.button_exit);
         button_camera.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

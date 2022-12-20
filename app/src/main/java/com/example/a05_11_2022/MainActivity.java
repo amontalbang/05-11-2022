@@ -1,5 +1,7 @@
 package com.example.a05_11_2022;
 
+import static java.security.AccessController.getContext;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,7 +9,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private int callbackId = 0;
     private static MediaPlayer mediaPlayer;
     private static ImageView currentImage;
+    private static Uri currentSong;
     private Locale locale;
     private Configuration config = new Configuration();
     private static final String TAG = "GoogleActivity";
@@ -79,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.loop);
         mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        //mediaPlayer.start();
+        Music music = new Music();
+        music.start();
 
         findViewById(R.id.google_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,14 +155,20 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer.stop();
     }
 
-
-
     public static void setImage(ImageView image) {
         currentImage = image;
     }
 
     public static ImageView getImage() {
         return currentImage;
+    }
+
+    public static void setSong(Uri song) {
+        currentSong = song;
+    }
+
+    public static Uri getSong() {
+        return currentSong;
     }
 
     private void showDialog(){
@@ -271,15 +284,20 @@ public class MainActivity extends AppCompatActivity {
         updateUI(currentUser);
     }*/
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
-        binding = null;
-    }
+    }*/
+
+    /*@Override
+    public void onResume() {
+        super.onResume();
+        mediaPlayer.start();
+    }*/
 
 
     @Override
@@ -289,6 +307,35 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
-        binding = null;
+    }
+
+    static class Music extends Thread {
+
+        public void run() {
+            mediaPlayer.start();
+        }
+
+        public void pause(){
+            mediaPlayer.pause();
+        }
+
+        public void parar(){
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+        }
+    }
+
+    public static void refreshSong(Uri song){
+
+        currentSong = song;
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = MediaPlayer.create(getContext(), song);
+        mediaPlayer.setLooping(true);
+        //mediaPlayer.start();
+        Music music = new Music();
+        music.start();
     }
 }

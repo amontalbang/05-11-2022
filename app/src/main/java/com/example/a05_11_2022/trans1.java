@@ -26,8 +26,11 @@ public class trans1 extends Fragment {
     ) {
 
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
+
         ImageView image = view.findViewById(R.id.trans1_resolved);
-        image.setImageDrawable(MainActivity.getImage().getDrawable());
+        image = MainActivity.getImage();
+        //image.setImageDrawable(MainActivity.getImage().getDrawable());
+
 
         victoria = MediaPlayer.create(getContext(), R.raw.victoria);
         victoria.start();
@@ -36,7 +39,7 @@ public class trans1 extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_trans1_to_selectorImageFragment);
+                Navigation.findNavController(view).navigate(R.id.action_trans1_to_photo_selector);
             }
 
         });

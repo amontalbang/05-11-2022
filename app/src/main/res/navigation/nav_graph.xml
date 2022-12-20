@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_FirstFragment_to_photo_selector"
+            app:destination="@id/photo_selector" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
@@ -54,7 +57,7 @@
     <fragment
         android:id="@+id/trans1"
         android:name="com.example.a05_11_2022.trans1"
-        android:label="@string/nivel_1_completado"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_trans1" >
         <action
             android:id="@+id/action_trans1_to_FirstFragment"
@@ -71,6 +74,9 @@
         <action
             android:id="@+id/action_trans1_to_selectorImageFragment"
             app:destination="@id/selection" />
+        <action
+            android:id="@+id/action_trans1_to_photo_selector"
+            app:destination="@id/photo_selector" />
     </fragment>
     <fragment
         android:id="@+id/puzzleFirstFragment"
@@ -99,7 +105,7 @@
     <fragment
         android:id="@+id/trans2"
         android:name="com.example.a05_11_2022.trans2"
-        android:label="@string/nivel_2_completado"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_trans2" >
         <action
             android:id="@+id/action_trans2_to_puzzleFirstFragment"
@@ -116,11 +122,14 @@
         <action
             android:id="@+id/action_trans2_to_selectorImageFragment"
             app:destination="@id/selection" />
+        <action
+            android:id="@+id/action_trans2_to_photo_selector"
+            app:destination="@id/photo_selector" />
     </fragment>
     <fragment
         android:id="@+id/trans3"
         android:name="com.example.a05_11_2022.trans3"
-        android:label="@string/nivel_3_completado"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_trans3" >
         <action
             android:id="@+id/action_trans3_to_FirstFragment"
@@ -182,5 +191,17 @@
         <action
             android:id="@+id/action_login_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photo_selector"
+        android:name="com.example.a05_11_2022.Photo_selector"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_photo_selector" >
+        <action
+            android:id="@+id/action_photo_selector_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_photo_selector_to_puzzleFirstFragment"
+            app:destination="@id/puzzleFirstFragment" />
     </fragment>
 </navigation>

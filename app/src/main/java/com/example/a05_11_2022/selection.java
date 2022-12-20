@@ -41,7 +41,7 @@ public class selection extends Fragment {
         View view = inflater.inflate(R.layout.fragment_selection, container, false);
         image = new ImageView(getContext());
 
-        Button button_play = (Button) view.findViewById(R.id.button_normal);
+        Button button_play = (Button) view.findViewById(R.id.button_play);
         button_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +51,7 @@ public class selection extends Fragment {
 
         });
 
-        Button button_gallery = view.findViewById(R.id.button_gallery);
+        Button button_gallery = view.findViewById(R.id.button_scores);
         button_gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class selection extends Fragment {
             }
         });
 
-        Button button_camera = view.findViewById(R.id.button_camera);
+        Button button_camera = view.findViewById(R.id.button_exit);
         button_camera.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

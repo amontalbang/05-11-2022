@@ -344,16 +344,7 @@ public class PuzzleFirstFragment extends Fragment {
     }
 
     private Drawable setNormalImage() {
-        switch (COLUMNAS) {
-            case 3:
-                return getContext().getDrawable(R.drawable.leon);
-            case 4:
-                return getContext().getDrawable(R.drawable.perro);
-            case 5:
-                return getContext().getDrawable(R.drawable.paleta);
-            default:
-                return null;
-        }
+        return MainActivity.getImage().getDrawable();
     }
 }
 

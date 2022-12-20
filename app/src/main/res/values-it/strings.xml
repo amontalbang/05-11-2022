@@ -67,4 +67,5 @@
     <string name="puntuaciones">Punteggi</string>
     <string name="modo_juego">Modalità di gioco</string>
     <string name="musica">Musica</string>
+    <string name="Select_photo">Immagine per il livello successivo</string>
 </resources>
