@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FirebaseDatabase extends Fragment {
+public class FirebaseDatabase {
 
     private static FirebaseFirestore mFirestore;
     private static List<PuntModelo> puntuaciones;

@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import com.google.firebase.storage.StorageReference;
 
 public class trans1 extends Fragment {
 
@@ -28,9 +31,8 @@ public class trans1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_trans1, container, false);
 
         ImageView image = view.findViewById(R.id.trans1_resolved);
-        image = MainActivity.getImage();
-        //image.setImageDrawable(MainActivity.getImage().getDrawable());
-
+        StorageReference reference = MainActivity.getReference();
+        GlideApp.with(view).load(reference).into(image);
 
         victoria = MediaPlayer.create(getContext(), R.raw.victoria);
         victoria.start();

@@ -118,7 +118,7 @@ public class SelectorImageFragment extends Fragment {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Uri uri = result.getData().getData();
                         image.setImageURI(uri);
-                        MainActivity.setImage(image);
+                        // MainActivity.setImage(image, null);
                     }
                 }
             }
@@ -133,7 +133,7 @@ public class SelectorImageFragment extends Fragment {
                         Bundle extras = result.getData().getExtras();
                         Bitmap bitmap = (Bitmap) extras.get("data");
                         image.setImageBitmap(bitmap);
-                        MainActivity.setImage(image);
+                        // MainActivity.setImage(image, null);
                     }
                 }
             }

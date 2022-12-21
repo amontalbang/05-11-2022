@@ -45,7 +45,7 @@ public class selection extends Fragment {
         button_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.setImage(null);
+                // MainActivity.setImage(null, null);
                 Navigation.findNavController(view).navigate(R.id.action_selection_to_puzzleFirstFragment2);
             }
 
@@ -127,7 +127,7 @@ public class selection extends Fragment {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Uri uri = result.getData().getData();
                         image.setImageURI(uri);
-                        MainActivity.setImage(image);
+                        // MainActivity.setImage(image, null);
                     }
                 }
             }
@@ -142,7 +142,7 @@ public class selection extends Fragment {
                         Bundle extras = result.getData().getExtras();
                         Bitmap bitmap = (Bitmap) extras.get("data");
                         image.setImageBitmap(bitmap);
-                        MainActivity.setImage(image);
+                        // MainActivity.setImage(image, null);
                     }
                 }
             }

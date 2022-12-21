@@ -49,9 +49,4 @@ public class PuntAdaptador extends RecyclerView.Adapter<PuntAdaptador.PuntViewHo
         viewHolder.puntuacion.setText("Tiempo: "+ String.valueOf(items.get(i).getTiempo()) + " seg");
         viewHolder.posicion.setText("Posición "+ (i + 1));
     }
-
-    public void updateItem(List<PuntModelo> lista){
-        this.items = lista;
-        notifyDataSetChanged();
-    }
 }

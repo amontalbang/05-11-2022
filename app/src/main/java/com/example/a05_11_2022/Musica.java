@@ -2,6 +2,7 @@ package com.example.a05_11_2022;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -36,8 +43,9 @@ public class Musica extends Fragment {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.Music music = new MainActivity.Music();
-                music.pause();
+                /*MainActivity.Music music = new MainActivity.Music();
+                music.pause();*/
+                MainActivity.pause();
             }
         });
 
@@ -45,8 +53,9 @@ public class Musica extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.Music music = new MainActivity.Music();
-                music.start();
+                /*MainActivity.Music music = new MainActivity.Music();
+                music.start();*/
+                MainActivity.start();
             }
         });
 
@@ -55,19 +64,23 @@ public class Musica extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent audioIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(audioIntent,REQUEST_CODE);
+                startActivityMusic.launch(audioIntent);
             }
         });
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode,int resultCode,Intent data){
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK ){
-            //the selected audio.Do some thing with uri
-            Uri uri = data.getData();
-            MainActivity.refreshSong(uri);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+    private ActivityResultLauncher<Intent> startActivityMusic = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Uri uri = result.getData().getData();
+                        MainActivity ma = new MainActivity();
+                        // ma.refreshSong(uri);
+                    }
+                }
+            }
+    );
 }

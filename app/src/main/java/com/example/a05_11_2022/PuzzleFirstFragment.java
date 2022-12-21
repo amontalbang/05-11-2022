@@ -34,6 +34,8 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.firebase.storage.StorageReference;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -80,15 +82,8 @@ public class PuzzleFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_puzzle_first, container, false);
 
         vista = view;
-        ImageView image;
-        if (MainActivity.getImage() != null) {
-            image = MainActivity.getImage();
-        } else {
-            image = new ImageView(getContext());
-            image.setImageDrawable(this.setNormalImage());
-            MainActivity.setImage(image);
-        }
-
+        ImageView image = new ImageView(getContext());
+        image = MainActivity.getImage();
         // si no se recupera imagen meter la imagen desde el proyecto en funcion de las columnas
         mGestos = (DetectorGestos) view.findViewById(R.id.grid);
 
@@ -341,10 +336,6 @@ public class PuzzleFirstFragment extends Fragment {
             yCoord += chunkHeight;
         }
         return chunkedImages;
-    }
-
-    private Drawable setNormalImage() {
-        return MainActivity.getImage().getDrawable();
     }
 }
 

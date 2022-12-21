@@ -43,6 +43,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -69,7 +70,8 @@ public class trans3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_trans3, container, false);
         ImageView image = view.findViewById(R.id.trans3_resolved);
-        image.setImageDrawable(MainActivity.getImage().getDrawable());
+        StorageReference reference = MainActivity.getReference();
+        GlideApp.with(view).load(reference).into(image);
 
         victoria = MediaPlayer.create(getContext(), R.raw.victoria);
         victoria.start();
