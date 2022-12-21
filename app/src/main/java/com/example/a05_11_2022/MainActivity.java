@@ -327,12 +327,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static void refreshSong(Uri song){
-
+    public void refreshSong(Uri song){
         currentSong = song;
         mediaPlayer.stop();
         mediaPlayer.release();
-        mediaPlayer = MediaPlayer.create(getContext(), song);
+        mediaPlayer = MediaPlayer.create(this, song);
         mediaPlayer.setLooping(true);
         //mediaPlayer.start();
         Music music = new Music();

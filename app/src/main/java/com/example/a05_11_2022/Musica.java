@@ -2,6 +2,7 @@ package com.example.a05_11_2022;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,7 +67,8 @@ public class Musica extends Fragment {
         if(requestCode == REQUEST_CODE && resultCode == RESULT_OK ){
             //the selected audio.Do some thing with uri
             Uri uri = data.getData();
-            MainActivity.refreshSong(uri);
+            MainActivity ma = new MainActivity();
+            ma.refreshSong(uri);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
