@@ -4,9 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class PuntAdaptador extends RecyclerView.Adapter<PuntAdaptador.PuntViewHolder> {
@@ -14,7 +12,6 @@ public class PuntAdaptador extends RecyclerView.Adapter<PuntAdaptador.PuntViewHo
     private List<PuntModelo> items;
 
     public static class PuntViewHolder extends RecyclerView.ViewHolder {
-        // Campos respectivos de un item
         public TextView posicion;
         public TextView nombre;
         public TextView puntuacion;

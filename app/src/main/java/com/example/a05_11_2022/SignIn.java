@@ -42,15 +42,6 @@ public class SignIn extends AppCompatActivity {
                 signOut();
             }
         });
-
-        findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignIn.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     public void signOut(){
@@ -59,5 +50,4 @@ public class SignIn extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }

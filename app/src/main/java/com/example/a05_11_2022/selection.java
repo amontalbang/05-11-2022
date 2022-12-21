@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 public class selection extends Fragment {
 
-    private selection binding;
+    /*private selection binding;
     private ImageView image;
     private String type;
 
@@ -157,5 +157,5 @@ public class selection extends Fragment {
     private void takePhotoFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityCamera.launch(intent);
-    }
+    }*/
 }

@@ -6,19 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,9 +48,6 @@ public class Puntuaciones extends Fragment {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        //adapter = new PuntAdaptador(FirebaseDatabase.mostrarPunts());
-        //recycler.setAdapter(adapter);
-
         adapter = new PuntAdaptador(puntuacionList);
         recycler.setAdapter(adapter);
 
@@ -75,10 +69,6 @@ public class Puntuaciones extends Fragment {
     }
 
     public void setTopTable(List<PuntModelo> puntuaciones){
-        /*adapter = new PuntAdaptador(puntuaciones);
-        recycler.setAdapter(adapter);
-        adapter = new PuntAdaptador(new ArrayList<PuntModelo>());
-        recycler.setAdapter(adapter);*/
         puntuacionList = (ArrayList) puntuaciones;
         if (adapter == null) {
             Log.d("Mensaje", "adapter null");
@@ -91,9 +81,6 @@ public class Puntuaciones extends Fragment {
 
         mFirestore = FirebaseFirestore.getInstance();
         CollectionReference puntsRef = mFirestore.collection("Puntuaciones");
-        //Query puntsRef = mFirestore.collection("Puntuaciones").orderBy("name", Query.Direction.ASCENDING).limit(10);
-        //puntsRef.orderBy("name", Query.Direction.ASCENDING).limit(10);
-
         puntsRef
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

@@ -11,8 +11,6 @@ import Utils.Utilidades;
 
 public class ConexionSQLite extends SQLiteOpenHelper {
 
-    public static boolean newRec;
-
     public ConexionSQLite(@Nullable Context context) {
         super(context, Utilidades.TABLA_PUNTUACIONES, null, 1);
     }

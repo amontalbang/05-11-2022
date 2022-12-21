@@ -1,7 +1,5 @@
 package com.example.a05_11_2022;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -20,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 public class Musica extends Fragment {
-
-    int REQUEST_CODE = 1001;
 
     @Override
     public View onCreateView(
@@ -43,8 +37,6 @@ public class Musica extends Fragment {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*MainActivity.Music music = new MainActivity.Music();
-                music.pause();*/
                 MainActivity.pause();
             }
         });
@@ -53,8 +45,6 @@ public class Musica extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*MainActivity.Music music = new MainActivity.Music();
-                music.start();*/
                 MainActivity.start();
             }
         });

@@ -30,9 +30,6 @@
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
         <action
-            android:id="@+id/action_FirstFragment_to_selection"
-            app:destination="@id/selection" />
-        <action
             android:id="@+id/action_FirstFragment_to_musica"
             app:destination="@id/musica" />
         <action
@@ -72,9 +69,6 @@
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
         <action
-            android:id="@+id/action_trans1_to_selectorImageFragment"
-            app:destination="@id/selection" />
-        <action
             android:id="@+id/action_trans1_to_photo_selector"
             app:destination="@id/photo_selector" />
     </fragment>
@@ -108,20 +102,11 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_trans2" >
         <action
-            android:id="@+id/action_trans2_to_puzzleFirstFragment"
-            app:destination="@id/selection"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"/>
-        <action
             android:id="@+id/action_trans2_to_FirstFragment"
             app:destination="@id/FirstFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_trans2_to_selectorImageFragment"
-            app:destination="@id/selection" />
         <action
             android:id="@+id/action_trans2_to_photo_selector"
             app:destination="@id/photo_selector" />
@@ -156,7 +141,7 @@
     <fragment
         android:id="@+id/puntuaciones"
         android:name="com.example.a05_11_2022.Puntuaciones"
-        android:label="@string/puntuaciones"
+        android:label="TOP 10 Puntuaciones"
         tools:layout="@layout/fragment_puntuaciones" >
         <action
             android:id="@+id/action_puntuaciones_to_FirstFragment"
@@ -164,15 +149,6 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
-    </fragment>
-    <fragment
-        android:id="@+id/selection"
-        android:name="com.example.a05_11_2022.selection"
-        android:label="@string/modo_juego"
-        tools:layout="@layout/fragment_selection" >
-        <action
-            android:id="@+id/action_selection_to_puzzleFirstFragment2"
-            app:destination="@id/puzzleFirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/musica"

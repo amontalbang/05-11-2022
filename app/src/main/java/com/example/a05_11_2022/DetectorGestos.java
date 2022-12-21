@@ -87,7 +87,6 @@ public class DetectorGestos extends GridView{
 
                     }
                 }
-
                 return super.onFling(e1, e2, velocityX, velocityY);
             }
         });
@@ -116,7 +115,6 @@ public class DetectorGestos extends GridView{
                 return true;
             }
         }
-
         return super.onInterceptTouchEvent(ev);
     }
 

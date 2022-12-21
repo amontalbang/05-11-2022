@@ -1,27 +1,19 @@
 package com.example.a05_11_2022;
 
-import static java.security.AccessController.getContext;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,10 +25,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.bumptech.glide.Glide;
 import com.example.a05_11_2022.databinding.ActivityMainBinding;
-import com.example.a05_11_2022.databinding.FragmentLoginBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -49,13 +38,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 import com.google.firebase.storage.StorageReference;
-
-import java.io.IOException;
 import java.util.Locale;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,13 +48,11 @@ public class MainActivity extends AppCompatActivity {
     private int callbackId = 0;
     private static MediaPlayer mediaPlayer;
     private static ImageView currentImage;
-    private static Uri currentSong;
     private Locale locale;
     private Configuration config = new Configuration();
     private static final String TAG = "GoogleActivity";
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    // private Music music;
     private static StorageReference reference;
 
     @Override
@@ -97,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
         }
-        // music.start();
-        // music = new Music();
-        // music.run(this, null, R.raw.loop);
 
         findViewById(R.id.google_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,14 +163,6 @@ public class MainActivity extends AppCompatActivity {
         return currentImage;
     }
 
-    public static void setSong(Uri song) {
-        currentSong = song;
-    }
-
-    public static Uri getSong() {
-        return currentSong;
-    }
-
     private void showDialog(){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle(getResources().getString(R.string.str_button));
@@ -234,11 +205,6 @@ public class MainActivity extends AppCompatActivity {
         b.show();
     }
 
-
-
-    // [END on_start_check_user]
-
-    // [START auth_with_google]
     private void firebaseAuthWithGoogle(String idToken){
 
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
@@ -259,9 +225,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    // [END auth_with_google]
 
-    // [START signin]
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -283,15 +247,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
     );
-    // [END signin]
 
     private void updateUI(FirebaseUser user){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if(currentUser != null){
-            /*Intent intent = new Intent(MainActivity.this, SignIn.class);
-            startActivity(intent);
-            finish();*/
-
             Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.login);
         }
     }
@@ -308,9 +267,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
         }
-        //Check if the user is signed in (non-null) and update UI accordingly
-        // FirebaseUser currentUser = mAuth.getCurrentUser();
-        // updateUI(currentUser);
     }
 
     @Override
@@ -357,51 +313,4 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.reset();
         }
     }
-
-    /*static class Music extends Thread {
-        private static MediaPlayer media;
-
-        public void run(Context context, Uri uri, int i) {
-            if (media != null) {
-                media.stop();
-                media.reset();
-            }
-            if (uri != null) {
-                media = MediaPlayer.create(context, uri);
-            } else {
-                media = MediaPlayer.create(context, i);
-            }
-
-            media.start();
-            this.start();
-        }
-
-        public void pause(){
-            media.pause();
-        }
-
-        /*public void parar(){
-            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
-                mediaPlayer.reset();
-            }
-        }
-    }*/
-
-    /*public void refreshSong(Uri song) {
-
-        if (music != null && music.isAlive()) {
-            music.run(this, song, 0);
-        }
-
-        Music music = new Music();
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, song);
-        music.start();
-        music.run();
-        // currentSong = song;
-        // mediaPlayer.stop();
-        // mediaPlayer.release();
-        // mediaPlayer.reset();
-        // mediaPlayer = MediaPlayer.create(this, song);
-    }*/
 }
