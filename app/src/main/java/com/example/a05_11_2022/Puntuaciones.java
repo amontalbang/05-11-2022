@@ -68,15 +68,6 @@ public class Puntuaciones extends Fragment {
         mostrarPunts();
     }
 
-    public void setTopTable(List<PuntModelo> puntuaciones){
-        puntuacionList = (ArrayList) puntuaciones;
-        if (adapter == null) {
-            Log.d("Mensaje", "adapter null");
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-    }
-
     public void mostrarPunts() {
 
         mFirestore = FirebaseFirestore.getInstance();
@@ -110,9 +101,6 @@ public class Puntuaciones extends Fragment {
                 }
             }
         }
-        for (Map<String, Object> registro : top) {
-            Log.d("registro", registro.get("puntuacion").toString());
-        }
         setTopTen(top);
     }
 
@@ -123,7 +111,6 @@ public class Puntuaciones extends Fragment {
         for(int i = 0; i < 10; i++){
             PuntModelo puntuacion = new PuntModelo(i + 1, orderedList.get(i).get("nombre").toString(), Integer.parseInt(orderedList.get(i).get("puntuacion").toString()));
             puntuacionList.add(puntuacion);
-            Log.d("Mensaje", puntuacion.getNombre());
         }
         adapter = new PuntAdaptador(puntuacionList);
         recycler.setAdapter(adapter);

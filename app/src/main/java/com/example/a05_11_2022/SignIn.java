@@ -3,7 +3,6 @@ package com.example.a05_11_2022;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
@@ -33,7 +32,6 @@ public class SignIn extends AppCompatActivity {
                     .into(profileImage);
             TextView name = (TextView) findViewById(R.id.textView);
             name.setText(currentUser.getDisplayName());
-            Log.d("message", currentUser.getDisplayName());
         }
 
         findViewById(R.id.signout_button).setOnClickListener(new View.OnClickListener() {

@@ -67,8 +67,6 @@ public class Musica extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Uri uri = result.getData().getData();
-                        MainActivity ma = new MainActivity();
-                        // ma.refreshSong(uri);
                     }
                 }
             }

@@ -41,7 +41,6 @@ public class Login extends Fragment {
                     .into(profileImage);
             TextView name = (TextView) view.findViewById(R.id.textView);
             name.setText(currentUser.getDisplayName());
-            Log.d("message", currentUser.getDisplayName());
         }
 
         Button button6 = (Button) view.findViewById(R.id.signout_button);

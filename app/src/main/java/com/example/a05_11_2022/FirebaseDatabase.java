@@ -30,7 +30,6 @@ public class FirebaseDatabase {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 orderData(queryDocumentSnapshots);
                 Puntuaciones puntClass = new Puntuaciones();
-                puntClass.setTopTable(puntuaciones);
             }
         });
     }

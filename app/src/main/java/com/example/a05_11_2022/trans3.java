@@ -115,7 +115,6 @@ public class trans3 extends Fragment {
                         .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_FREE);
                 startActivity(insertCalendarIntent);
                 Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
-                Log.d("Nuevo registro añadido","Uri:" + uri);
                 Toast.makeText(getContext(),"Puntuacion guardada en calendar", Toast.LENGTH_SHORT).show();
 
                 /** Registrar puntuacion en DataBase*/
@@ -125,9 +124,6 @@ public class trans3 extends Fragment {
                 String userName = scoreName;
                 String email = user.getEmail();
                 int punt = newTime;
-                Log.d("db userName", userName);
-                Log.d("db email", email);
-                Log.d("db punt", Integer.toString(newTime));
                 registroPuntCloud(userName, email, punt);
 
                 Navigation.findNavController(view).navigate(R.id.action_trans3_to_FirstFragment);
@@ -160,7 +156,6 @@ public class trans3 extends Fragment {
                 .setContentText("Se ha producido un nuevo Récord en el juego, ¡Corre, ve a superarlo!")
                 .setColor(Color.RED)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());

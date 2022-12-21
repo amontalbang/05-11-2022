@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Mensaje", "onCreate");
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -166,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
     private void showDialog(){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle(getResources().getString(R.string.str_button));
-        //obtiene los idiomas del array de string.xml
         String[] types = getResources().getStringArray(R.array.languages);
         b.setItems(types, new DialogInterface.OnClickListener() {
 
@@ -214,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             // Sign in success, update UI with the signed-in user´s information
-                            Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
@@ -237,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
                         try{
                             //Google Sign in was succesfull, authenticate with Firebase
                             GoogleSignInAccount account = task.getResult(ApiException.class);
-                            Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                             firebaseAuthWithGoogle(account.getIdToken());
                         } catch (ApiException e){
                             // Google Sign In failed, update UI appropiately
@@ -256,22 +250,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart(){
-        Log.d("Mensaje", "onStart");
-        super.onStart();
-        if (mediaPlayer == null) {
-            Log.d("Mensaje", "entra null onStart");
-            mediaPlayer = MediaPlayer.create(this, R.raw.loop);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-        } else if (!mediaPlayer.isPlaying()) {
-            mediaPlayer.start();
-        }
-    }
-
-    @Override
     public void onPause() {
-        Log.d("Mensaje", "onPause");
         super.onPause();
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
@@ -281,36 +260,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
-        Log.d("Mensaje", "onResume");
         super.onResume();
-        if (mediaPlayer == null) {
-            Log.d("Mensaje", "entra null onResume");
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer = MediaPlayer.create(this, R.raw.loop);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
-        } else if (!mediaPlayer.isPlaying()) {
-            Log.d("Mensaje", "entra start onResume");
-            mediaPlayer.start();
-        }
-    }
-
-
-    @Override
-    public void onDestroy() {
-        Log.d("Mensaje", "onDestroy");
-        super.onDestroy();
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-        }
-    }
-
-    public void onStop() {
-        Log.d("Mensaje", "onStop");
-        super.onStop();
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-            mediaPlayer.reset();
         }
     }
 }
